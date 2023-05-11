@@ -13,6 +13,8 @@
 		29EF3A6F2A0D704900F9FFCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29EF3A6E2A0D704900F9FFCA /* Assets.xcassets */; };
 		29EF3A722A0D704900F9FFCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29EF3A702A0D704900F9FFCA /* LaunchScreen.storyboard */; };
 		29EF3A7A2A0D9F1F00F9FFCA /* Colors + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A792A0D9F1F00F9FFCA /* Colors + Extention.swift */; };
+		29EF3A7C2A0DA16B00F9FFCA /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A7B2A0DA16B00F9FFCA /* TrackersViewController.swift */; };
+		29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A7D2A0DA18000F9FFCA /* StatisticViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		29EF3A712A0D704900F9FFCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29EF3A732A0D704900F9FFCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29EF3A792A0D9F1F00F9FFCA /* Colors + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors + Extention.swift"; sourceTree = "<group>"; };
+		29EF3A7B2A0DA16B00F9FFCA /* TrackersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewController.swift; sourceTree = "<group>"; };
+		29EF3A7D2A0DA18000F9FFCA /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				29EF3A652A0D704800F9FFCA /* AppDelegate.swift */,
 				29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */,
 				29EF3A692A0D704800F9FFCA /* TabBarViewController.swift */,
+				29EF3A7B2A0DA16B00F9FFCA /* TrackersViewController.swift */,
+				29EF3A7D2A0DA18000F9FFCA /* StatisticViewController.swift */,
 				29EF3A792A0D9F1F00F9FFCA /* Colors + Extention.swift */,
 				29EF3A6E2A0D704900F9FFCA /* Assets.xcassets */,
 				29EF3A702A0D704900F9FFCA /* LaunchScreen.storyboard */,
@@ -139,6 +145,8 @@
 			files = (
 				29EF3A6A2A0D704800F9FFCA /* TabBarViewController.swift in Sources */,
 				29EF3A662A0D704800F9FFCA /* AppDelegate.swift in Sources */,
+				29EF3A7C2A0DA16B00F9FFCA /* TrackersViewController.swift in Sources */,
+				29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */,
 				29EF3A7A2A0D9F1F00F9FFCA /* Colors + Extention.swift in Sources */,
 				29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */,
 			);
