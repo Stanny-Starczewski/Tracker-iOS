@@ -1,13 +1,6 @@
-//
-//  ViewController.swift
-//  Tracker-iOS
-//
-//  Created by Gennadii Kulikov on 11.05.2023.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
