@@ -42,6 +42,29 @@ final class TrackersViewController: UIViewController {
         return searchField
     }()
     
+    private let starIcon: UIImageView = {
+        let starView = UIImageView()
+        starView.image = UIImage(named: "StarIcon")
+        return starView
+    }()
+    
+    private let questionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.text = "Что будем отслеживать?"
+        label.textColor = .BlackDay
+        return label
+    }()
+    
+    let stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = 8
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
     
     // MARK: - Lifecycle
     
@@ -69,11 +92,17 @@ private extension TrackersViewController {
         view.addSubview(addButton)
         view.addSubview(datePicker)
         view.addSubview(searchBar)
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(starIcon)
+        stackView.addArrangedSubview(questionLabel)
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        starIcon.translatesAutoresizingMaskIntoConstraints = false
+        questionLabel.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func configureConstraints() {
@@ -87,6 +116,8 @@ private extension TrackersViewController {
             searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 
         ])
     }
