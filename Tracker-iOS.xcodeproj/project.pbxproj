@@ -16,6 +16,7 @@
 		29EF3A7C2A0DA16B00F9FFCA /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A7B2A0DA16B00F9FFCA /* TrackersViewController.swift */; };
 		29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A7D2A0DA18000F9FFCA /* StatisticViewController.swift */; };
 		29EF3A812A0DA67300F9FFCA /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A802A0DA67300F9FFCA /* Emoji.swift */; };
+		29EF3A842A0DBA1800F9FFCA /* ShowPreviewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		29EF3A7B2A0DA16B00F9FFCA /* TrackersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewController.swift; sourceTree = "<group>"; };
 		29EF3A7D2A0DA18000F9FFCA /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		29EF3A802A0DA67300F9FFCA /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPreviewUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				29EF3A792A0D9F1F00F9FFCA /* Colors + Extention.swift */,
 				29EF3A802A0DA67300F9FFCA /* Emoji.swift */,
+				29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */,
 				29EF3A7A2A0D9F1F00F9FFCA /* Colors + Extention.swift in Sources */,
 				29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */,
+				29EF3A842A0DBA1800F9FFCA /* ShowPreviewUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
