@@ -54,7 +54,7 @@ private extension TrackersViewController {
 // MARK: - SHOW PREVIEW
 
 import SwiftUI
-struct CreateTrackerVCProvider: PreviewProvider {
+struct CreateTrackersVCProvider: PreviewProvider {
     static var previews: some View {
         TrackersViewController().showPreview()
     }

@@ -7,3 +7,11 @@ import UIKit
          view.backgroundColor = .WhiteDay
      }
  }
+// MARK: - SHOW PREVIEW
+
+import SwiftUI
+struct CreateStatisticVCProvider: PreviewProvider {
+    static var previews: some View {
+        StatisticViewController().showPreview()
+    }
+}
