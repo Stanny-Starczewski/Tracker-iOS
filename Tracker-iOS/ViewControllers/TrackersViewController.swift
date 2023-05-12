@@ -34,6 +34,15 @@ final class TrackersViewController: UIViewController {
         datePicker.calendar = Calendar(identifier: .iso8601)
         return datePicker
     }()
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchField = UISearchBar()
+        searchField.placeholder = "Поиск"
+        searchField.searchBarStyle = .minimal
+        return searchField
+    }()
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -59,10 +68,12 @@ private extension TrackersViewController {
         view.addSubview(titleLabel)
         view.addSubview(addButton)
         view.addSubview(datePicker)
+        view.addSubview(searchBar)
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func configureConstraints() {
@@ -72,7 +83,11 @@ private extension TrackersViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             titleLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 13),
             datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            datePicker.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 13)
+            datePicker.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 13),
+            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+
         ])
     }
 }
