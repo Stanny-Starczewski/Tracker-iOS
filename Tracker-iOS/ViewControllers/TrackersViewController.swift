@@ -80,9 +80,16 @@ final class TrackersViewController: UIViewController {
     
     @objc
     private func didTapPlusButton() {
-        print("Plus tapped")
+        
+        let setTrackersViewController = SetTrackersViewController()
+        setTrackersViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: setTrackersViewController)
+        present(navigationController, animated: true)
+         
     }
 }
+
+// MARK: - EXTENSIONS
  //MARK: - Layout methods
 
 private extension TrackersViewController {
@@ -122,12 +129,18 @@ private extension TrackersViewController {
         ])
     }
 }
+// MARK: - AddTrackerViewControllerDelegate
 
-// MARK: - SHOW PREVIEW
-
-import SwiftUI
-struct CreateTrackersVCProvider: PreviewProvider {
-    static var previews: some View {
-        TrackersViewController().showPreview()
+extension TrackersViewController: SetTrackersViewControllerDelegate {
+    func didSelectTracker(with type: SetTrackersViewController.TrackerType) {
     }
 }
+
+//// MARK: - SHOW PREVIEW
+//
+//import SwiftUI
+//struct CreateTrackersVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        TrackersViewController().showPreview()
+//    }
+//}

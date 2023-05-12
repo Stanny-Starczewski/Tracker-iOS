@@ -32,11 +32,11 @@ class TabBarViewController: UITabBarController {
         viewControllers = controllers
     }
 }
-// MARK: - SHOW PREVIEW
-
-import SwiftUI
-struct CreateTabBarVCProvider: PreviewProvider {
-    static var previews: some View {
-        TabBarViewController().showPreview()
-    }
-}
+//// MARK: - SHOW PREVIEW
+//
+//import SwiftUI
+//struct CreateTabBarVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        TabBarViewController().showPreview()
+//    }
+//}

@@ -45,6 +45,7 @@ final class StatisticViewController: UIViewController {
     
 }
 
+// MARK: - EXTENSIONS
 // MARK: - Layout methods
 private extension StatisticViewController {
     func setupContent() {
@@ -66,11 +67,11 @@ private extension StatisticViewController {
     }
 }
 
-// MARK: - SHOW PREVIEW
-
-import SwiftUI
-struct CreateStatisticVCProvider: PreviewProvider {
-    static var previews: some View {
-        StatisticViewController().showPreview()
-    }
-}
+//// MARK: - SHOW PREVIEW
+//
+//import SwiftUI
+//struct CreateStatisticVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        StatisticViewController().showPreview()
+//    }
+//}
