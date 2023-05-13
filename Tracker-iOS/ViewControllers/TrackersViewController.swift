@@ -38,6 +38,7 @@ final class TrackersViewController: UIViewController {
     private lazy var uiSearchTextField: UISearchTextField = {
         let searchField = UISearchTextField()
         searchField.backgroundColor = .WhiteDay
+        searchField.textColor = .BlackDay
         searchField.placeholder = "Поиск"
         searchField.delegate = self
         return searchField
@@ -67,9 +68,16 @@ final class TrackersViewController: UIViewController {
         return stack
     }()
     
+    private let collectionView: UICollectionView = {
+             let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+             view.backgroundColor = .WhiteDay
+             return view
+         }()
+    
     //MARK: - Properties
     
     private var searchText = ""
+    private var currentDate = Date()
     
     // MARK: - Lifecycle
     
@@ -100,7 +108,7 @@ final class TrackersViewController: UIViewController {
 private extension TrackersViewController {
     func configureViews() {
         view.backgroundColor = .WhiteDay
-        [titleLabel, addButton, datePicker, uiSearchTextField, stackView].forEach { view.addSubview($0) }
+        [titleLabel, addButton, datePicker, uiSearchTextField, stackView, collectionView].forEach { view.addSubview($0) }
         stackView.addArrangedSubview(starIcon)
         stackView.addArrangedSubview(questionLabel)
         
@@ -111,6 +119,7 @@ private extension TrackersViewController {
         starIcon.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func configureConstraints() {
@@ -125,8 +134,11 @@ private extension TrackersViewController {
             uiSearchTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             uiSearchTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: uiSearchTextField.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -139,7 +151,15 @@ extension TrackersViewController: SetTrackersViewControllerDelegate {
  //MARK: - UISearchTextFieldDelegate
 
 extension TrackersViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return view.endEditing(true)
     }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        // reload
+    }
+}
 
 //// MARK: - SHOW PREVIEW
 //
