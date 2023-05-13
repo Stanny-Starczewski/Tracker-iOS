@@ -18,6 +18,10 @@
 		29EF3A812A0DA67300F9FFCA /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A802A0DA67300F9FFCA /* Emoji.swift */; };
 		29EF3A842A0DBA1800F9FFCA /* ShowPreviewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */; };
 		29EF3A862A0E9A3200F9FFCA /* SetTrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A852A0E9A3200F9FFCA /* SetTrackersViewController.swift */; };
+		29EF3A892A0FE3B900F9FFCA /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A882A0FE3B900F9FFCA /* Tracker.swift */; };
+		29EF3A8B2A0FE3CA00F9FFCA /* TrackerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A8A2A0FE3CA00F9FFCA /* TrackerCategory.swift */; };
+		29EF3A8D2A0FE3DA00F9FFCA /* TrackerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A8C2A0FE3DA00F9FFCA /* TrackerRecord.swift */; };
+		29EF3A8F2A0FE67F00F9FFCA /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A8E2A0FE67F00F9FFCA /* WeekDay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		29EF3A802A0DA67300F9FFCA /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPreviewUI.swift; sourceTree = "<group>"; };
 		29EF3A852A0E9A3200F9FFCA /* SetTrackersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTrackersViewController.swift; sourceTree = "<group>"; };
+		29EF3A882A0FE3B900F9FFCA /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
+		29EF3A8A2A0FE3CA00F9FFCA /* TrackerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategory.swift; sourceTree = "<group>"; };
+		29EF3A8C2A0FE3DA00F9FFCA /* TrackerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecord.swift; sourceTree = "<group>"; };
+		29EF3A8E2A0FE67F00F9FFCA /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,7 @@
 		29EF3A642A0D704800F9FFCA /* Tracker-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A822A0DA68600F9FFCA /* Helpers */,
 				29EF3A652A0D704800F9FFCA /* AppDelegate.swift */,
 				29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */,
@@ -96,6 +105,17 @@
 				29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		29EF3A872A0FE39200F9FFCA /* UIStructs */ = {
+			isa = PBXGroup;
+			children = (
+				29EF3A882A0FE3B900F9FFCA /* Tracker.swift */,
+				29EF3A8A2A0FE3CA00F9FFCA /* TrackerCategory.swift */,
+				29EF3A8C2A0FE3DA00F9FFCA /* TrackerRecord.swift */,
+				29EF3A8E2A0FE67F00F9FFCA /* WeekDay.swift */,
+			);
+			path = UIStructs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,13 +190,17 @@
 			files = (
 				29EF3A812A0DA67300F9FFCA /* Emoji.swift in Sources */,
 				29EF3A6A2A0D704800F9FFCA /* TabBarViewController.swift in Sources */,
+				29EF3A892A0FE3B900F9FFCA /* Tracker.swift in Sources */,
 				29EF3A862A0E9A3200F9FFCA /* SetTrackersViewController.swift in Sources */,
 				29EF3A662A0D704800F9FFCA /* AppDelegate.swift in Sources */,
+				29EF3A8D2A0FE3DA00F9FFCA /* TrackerRecord.swift in Sources */,
 				29EF3A7C2A0DA16B00F9FFCA /* TrackersViewController.swift in Sources */,
+				29EF3A8F2A0FE67F00F9FFCA /* WeekDay.swift in Sources */,
 				29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */,
 				29EF3A7A2A0D9F1F00F9FFCA /* Colors + Extention.swift in Sources */,
 				29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */,
 				29EF3A842A0DBA1800F9FFCA /* ShowPreviewUI.swift in Sources */,
+				29EF3A8B2A0FE3CA00F9FFCA /* TrackerCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
