@@ -35,10 +35,11 @@ final class TrackersViewController: UIViewController {
         return datePicker
     }()
     
-    private lazy var searchBar: UISearchBar = {
-        let searchField = UISearchBar()
+    private lazy var uiSearchTextField: UISearchTextField = {
+        let searchField = UISearchTextField()
+        searchField.backgroundColor = .WhiteDay
         searchField.placeholder = "Поиск"
-        searchField.searchBarStyle = .minimal
+        searchField.delegate = self
         return searchField
     }()
     
@@ -65,6 +66,10 @@ final class TrackersViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
+    
+    //MARK: - Properties
+    
+    private var searchText = ""
     
     // MARK: - Lifecycle
     
@@ -98,7 +103,7 @@ private extension TrackersViewController {
         view.addSubview(titleLabel)
         view.addSubview(addButton)
         view.addSubview(datePicker)
-        view.addSubview(searchBar)
+        view.addSubview(uiSearchTextField)
         view.addSubview(stackView)
         stackView.addArrangedSubview(starIcon)
         stackView.addArrangedSubview(questionLabel)
@@ -106,7 +111,7 @@ private extension TrackersViewController {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        uiSearchTextField.translatesAutoresizingMaskIntoConstraints = false
         starIcon.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -120,9 +125,9 @@ private extension TrackersViewController {
             titleLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 13),
             datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             datePicker.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 13),
-            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            uiSearchTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            uiSearchTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            uiSearchTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 
@@ -130,11 +135,15 @@ private extension TrackersViewController {
     }
 }
 // MARK: - AddTrackerViewControllerDelegate
-
 extension TrackersViewController: SetTrackersViewControllerDelegate {
     func didSelectTracker(with type: SetTrackersViewController.TrackerType) {
     }
 }
+
+ //MARK: - UISearchTextFieldDelegate
+
+extension TrackersViewController: UITextFieldDelegate {
+    }
 
 //// MARK: - SHOW PREVIEW
 //
