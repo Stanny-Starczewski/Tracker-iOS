@@ -100,11 +100,7 @@ final class TrackersViewController: UIViewController {
 private extension TrackersViewController {
     func configureViews() {
         view.backgroundColor = .WhiteDay
-        view.addSubview(titleLabel)
-        view.addSubview(addButton)
-        view.addSubview(datePicker)
-        view.addSubview(uiSearchTextField)
-        view.addSubview(stackView)
+        [titleLabel, addButton, datePicker, uiSearchTextField, stackView].forEach { view.addSubview($0) }
         stackView.addArrangedSubview(starIcon)
         stackView.addArrangedSubview(questionLabel)
         
