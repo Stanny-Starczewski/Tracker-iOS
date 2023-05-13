@@ -15,24 +15,5 @@ extension UIColor {
     static var BackgroundDay: UIColor { UIColor(named: "BackgroundDay") ?? UIColor.gray }
     
     // MARK: - ActionsCells (habits) colors
-    static let bunchOfSChoices = [
-        UIColor(named: "ColorSelection1"),
-        UIColor(named: "ColorSelection2"),
-        UIColor(named: "ColorSelection3"),
-        UIColor(named: "ColorSelection4"),
-        UIColor(named: "ColorSelection5"),
-        UIColor(named: "ColorSelection6"),
-        UIColor(named: "ColorSelection7"),
-        UIColor(named: "ColorSelection8"),
-        UIColor(named: "ColorSelection9"),
-        UIColor(named: "ColorSelection10"),
-        UIColor(named: "ColorSelection11"),
-        UIColor(named: "ColorSelection12"),
-        UIColor(named: "ColorSelection13"),
-        UIColor(named: "ColorSelection14"),
-        UIColor(named: "ColorSelection15"),
-        UIColor(named: "ColorSelection16"),
-        UIColor(named: "ColorSelection17"),
-        UIColor(named: "ColorSelection18"),
-    ]
+    static func bunchOfSChoices(_ number: Int) -> UIColor? { UIColor(named: "ColorSelection\(number)") }
 }
