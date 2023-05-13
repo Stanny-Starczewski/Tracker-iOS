@@ -5,7 +5,6 @@ final class StatisticViewController: UIViewController {
     // MARK: - Layout elements
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Статистика"
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         return label
@@ -13,14 +12,12 @@ final class StatisticViewController: UIViewController {
     
     private let emptyImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "EmptyStat")
         return imageView
     }()
     
     private let emptyLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.text = "Анализировать пока нечего"
         label.textColor = .BlackDay
@@ -29,7 +26,6 @@ final class StatisticViewController: UIViewController {
     
     private let emptyStack: UIStackView = {
         let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.alignment = .center
         stack.spacing = 8
@@ -52,9 +48,15 @@ private extension StatisticViewController {
         view.backgroundColor = .WhiteDay
         view.addSubview(nameLabel)
         view.addSubview(emptyStack)
-        
         emptyStack.addArrangedSubview(emptyImageView)
         emptyStack.addArrangedSubview(emptyLabel)
+        
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyImageView.translatesAutoresizingMaskIntoConstraints = false
+        emptyLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyStack.translatesAutoresizingMaskIntoConstraints = false
+
     }
     
     func setupConstraints() {
