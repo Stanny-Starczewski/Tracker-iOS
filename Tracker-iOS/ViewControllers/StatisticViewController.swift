@@ -35,8 +35,8 @@ final class StatisticViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupContent()
-        setupConstraints()
+        configureViews()
+        configureConstraints()
     }
     
 }
@@ -44,13 +44,11 @@ final class StatisticViewController: UIViewController {
 // MARK: - EXTENSIONS
 // MARK: - Layout methods
 private extension StatisticViewController {
-    func setupContent() {
+    func configureViews() {
         view.backgroundColor = .WhiteDay
-        view.addSubview(nameLabel)
-        view.addSubview(emptyStack)
+        [nameLabel, emptyStack].forEach { view.addSubview($0) }
         emptyStack.addArrangedSubview(emptyImageView)
         emptyStack.addArrangedSubview(emptyLabel)
-        
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         emptyImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +57,7 @@ private extension StatisticViewController {
 
     }
     
-    func setupConstraints() {
+    func configureConstraints() {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 52),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
