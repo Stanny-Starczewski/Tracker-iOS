@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		295605362A108A76008F0983 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295605352A108A76008F0983 /* UIStackView+Extension.swift */; };
 		295605382A108F48008F0983 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295605372A108F48008F0983 /* Date+Extension.swift */; };
-		2956053A2A109016008F0983 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295605392A109016008F0983 /* Int+Extensions.swift */; };
+		2956053A2A109016008F0983 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295605392A109016008F0983 /* Int+Extension.swift */; };
 		29EF3A662A0D704800F9FFCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A652A0D704800F9FFCA /* AppDelegate.swift */; };
 		29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */; };
 		29EF3A6A2A0D704800F9FFCA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A692A0D704800F9FFCA /* TabBarViewController.swift */; };
@@ -39,7 +39,7 @@
 /* Begin PBXFileReference section */
 		295605352A108A76008F0983 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		295605372A108F48008F0983 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		295605392A109016008F0983 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		295605392A109016008F0983 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		29EF3A622A0D704800F9FFCA /* Tracker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29EF3A652A0D704800F9FFCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +79,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2956053B2A1132FE008F0983 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				29EF3A792A0D9F1F00F9FFCA /* Colors+Extension.swift */,
+				29EF3AA62A106C7700F9FFCA /* UILabel+Extension.swift */,
+				29EF3AA82A107BD300F9FFCA /* UICollectionView+Extension.swift */,
+				295605392A109016008F0983 /* Int+Extension.swift */,
+				29EF3AA02A105EC400F9FFCA /* MockData+Extension.swift */,
+				295605352A108A76008F0983 /* UIStackView+Extension.swift */,
+				295605372A108F48008F0983 /* Date+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		29EF3A592A0D704800F9FFCA = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +116,7 @@
 				29EF3A982A0FFD0B00F9FFCA /* Cells */,
 				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A822A0DA68600F9FFCA /* Helpers */,
+				2956053B2A1132FE008F0983 /* Extensions */,
 				29EF3A652A0D704800F9FFCA /* AppDelegate.swift */,
 				29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */,
 				29EF3A7F2A0DA38500F9FFCA /* ViewControllers */,
@@ -127,16 +142,9 @@
 		29EF3A822A0DA68600F9FFCA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				29EF3A792A0D9F1F00F9FFCA /* Colors+Extension.swift */,
 				29EF3A802A0DA67300F9FFCA /* Emoji.swift */,
 				29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */,
 				29EF3A922A0FFB8400F9FFCA /* ListOfItems.swift */,
-				29EF3AA02A105EC400F9FFCA /* MockData+Extension.swift */,
-				29EF3AA62A106C7700F9FFCA /* UILabel+Extension.swift */,
-				29EF3AA82A107BD300F9FFCA /* UICollectionView+Extension.swift */,
-				295605352A108A76008F0983 /* UIStackView+Extension.swift */,
-				295605372A108F48008F0983 /* Date+Extension.swift */,
-				295605392A109016008F0983 /* Int+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -254,7 +262,7 @@
 				29EF3AA12A105EC400F9FFCA /* MockData+Extension.swift in Sources */,
 				29EF3AA52A1069B400F9FFCA /* TrackersCollectinCell.swift in Sources */,
 				29EF3A7C2A0DA16B00F9FFCA /* TrackersViewController.swift in Sources */,
-				2956053A2A109016008F0983 /* Int+Extensions.swift in Sources */,
+				2956053A2A109016008F0983 /* Int+Extension.swift in Sources */,
 				29EF3A8F2A0FE67F00F9FFCA /* WeekDay.swift in Sources */,
 				29EF3A9A2A0FFD6F00F9FFCA /* ListCells.swift in Sources */,
 				29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */,

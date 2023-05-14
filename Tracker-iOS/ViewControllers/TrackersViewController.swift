@@ -303,7 +303,7 @@ extension TrackersViewController: SetTrackersViewControllerDelegate {
 // MARK: - UISearchBarDelegate
  extension TrackersViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        checkMainPlaceholderVisability()
+        checkPlaceholderVisabilityAfterSearch()
         searchBar.setShowsCancelButton(true, animated: true)
          return true
      }
@@ -311,6 +311,7 @@ extension TrackersViewController: SetTrackersViewControllerDelegate {
      func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
          self.searchText = searchText
          collectionView.reloadData()
+         checkPlaceholderVisabilityAfterSearch()
      }
 
      func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
