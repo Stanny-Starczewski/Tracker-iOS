@@ -26,6 +26,7 @@ final class TrackersViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .compact
         datePicker.locale = Locale(identifier: "ru_RU")
         datePicker.calendar = Calendar(identifier: .iso8601)
+        datePicker.addTarget(self, action: #selector(didChangedDatePicker), for: .valueChanged)
         return datePicker
     }()
     
@@ -52,22 +53,38 @@ final class TrackersViewController: UIViewController {
              return view
          }()
     
+    private lazy var filterButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Фильтры", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        button.layer.cornerRadius = 16
+        button.backgroundColor = .blue
+        return button
+    }()
+    
     //MARK: - Properties
     
     private let mainSpacePlaceholderStack = UIStackView()
     private let searchSpacePlaceholderStack = UIStackView()
     private let trackerLabel = UILabel()
     private var currentDate = Date()
+    private var selectedDate = Date.from(date: Date())!
     private let params = UICollectionView.GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, cellSpacing: 10)
     private var categories: [TrackerCategory] = TrackerCategory.mockData {
         didSet {
             checkMainPlaceholderVisability()
         }
     }
-    private var complitedTrackers: Set<TrackerRecord> = []
+    private var completedTrackers: Set<TrackerRecord> = []
     private var searchText = ""
     private var visibleCategories: [TrackerCategory] {
         guard !searchText.isEmpty else {
+            if categories.isEmpty {
+                filterButton.isHidden = true
+            } else {
+                filterButton.isHidden = false
+            }
             return categories
         }
         
@@ -78,9 +95,14 @@ final class TrackersViewController: UIViewController {
             if !filteredTrackers.isEmpty {
                 result.append(TrackerCategory(label: category.label, trackers: filteredTrackers))
             }
+            
+            if result.isEmpty {
+                filterButton.isHidden = true
+            } else {
+                filterButton.isHidden = false
+            }
         }
- 
-        return result
+    return result
     }
     
     // MARK: - Lifecycle
@@ -113,6 +135,12 @@ final class TrackersViewController: UIViewController {
          
     }
     
+    @objc
+    private func didChangedDatePicker(_ sender: UIDatePicker) {
+        selectedDate = Date.from(date: sender.date)!
+        collectionView.reloadData()
+    }
+    
     // MARK: - Methods
     private func checkMainPlaceholderVisability() {
         let isHidden = visibleCategories.isEmpty && searchSpacePlaceholderStack.isHidden
@@ -129,7 +157,7 @@ final class TrackersViewController: UIViewController {
 private extension TrackersViewController {
     func configureViews() {
         view.backgroundColor = .WhiteDay
-        [trackerLabel, addButton, datePicker, searchBar, collectionView, mainSpacePlaceholderStack, searchSpacePlaceholderStack].forEach { view.addSubview($0) }
+        [trackerLabel, addButton, datePicker, searchBar, collectionView, mainSpacePlaceholderStack, searchSpacePlaceholderStack, filterButton].forEach { view.addSubview($0) }
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
         trackerLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -138,6 +166,7 @@ private extension TrackersViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         mainSpacePlaceholderStack.translatesAutoresizingMaskIntoConstraints = false
         searchSpacePlaceholderStack.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -163,7 +192,11 @@ private extension TrackersViewController {
             mainSpacePlaceholderStack.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.495),
             mainSpacePlaceholderStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             searchSpacePlaceholderStack.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.495),
-            searchSpacePlaceholderStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            searchSpacePlaceholderStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            filterButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            filterButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            filterButton.widthAnchor.constraint(equalToConstant: 114),
+            filterButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
@@ -184,14 +217,16 @@ extension TrackersViewController: UICollectionViewDelegate {
      }
 
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         guard let trackersCell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackerCell.identifier, for: indexPath) as? TrackerCell else {
+         guard let trackerCell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackerCell.identifier, for: indexPath) as? TrackerCell else {
              return UICollectionViewCell()
          }
 
          let tracker = visibleCategories[indexPath.section].trackers[indexPath.row]
-         trackersCell.configure(with: tracker)
-
-         return trackersCell
+         let daysCount = completedTrackers.filter { $0.trackerId == tracker.id }.count
+         let isCompleted = completedTrackers.contains { $0.date == selectedDate && $0.trackerId == tracker.id }
+         trackerCell.configure(with: tracker, days: daysCount, isCompleted: isCompleted)
+         trackerCell.delegate = self
+         return trackerCell
      }
  }
 
@@ -286,6 +321,22 @@ extension TrackersViewController: SetTrackersViewControllerDelegate {
          searchBar.resignFirstResponder()
          collectionView.reloadData()
          checkPlaceholderVisabilityAfterSearch()
+     }
+ }
+// MARK: - TrackerCellDelegate
+ extension TrackersViewController: TrackerCellDelegate {
+     func didTapCompleteButton(of cell: TrackerCell, with tracker: Tracker) {
+         let trackerRecord = TrackerRecord(trackerId: tracker.id, date: selectedDate)
+
+         if completedTrackers.contains(where: { $0.date == selectedDate && $0.trackerId == tracker.id }) {
+             completedTrackers.remove(trackerRecord)
+             cell.switchAddDayButton(to: false)
+             cell.decreaseCount()
+         } else {
+             completedTrackers.insert(trackerRecord)
+             cell.switchAddDayButton(to: true)
+             cell.increaseCount()
+         }
      }
  }
 
