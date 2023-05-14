@@ -69,7 +69,6 @@ final class TrackersViewController: UIViewController {
     private let searchSpacePlaceholderStack = UIStackView()
     private let trackerLabel = UILabel()
     private var currentDate = Date()
-    private var selectedDate = Date.from(date: Date())!
     private let params = UICollectionView.GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, cellSpacing: 10)
     private var categories: [TrackerCategory] = TrackerCategory.mockData {
         didSet {
@@ -79,34 +78,35 @@ final class TrackersViewController: UIViewController {
     private var completedTrackers: Set<TrackerRecord> = []
     private var searchText = ""
     private var visibleCategories: [TrackerCategory] {
-        guard !searchText.isEmpty else {
-            if categories.isEmpty {
-                filterButton.isHidden = true
-            } else {
-                filterButton.isHidden = false
-            }
-            return categories
-        }
+        let weekday = Calendar.current.component(.weekday, from: currentDate)
         
         var result = [TrackerCategory]()
         for category in categories {
-            let filteredTrackers = category.trackers.filter { $0.label.contains(searchText) }
-            
-            if !filteredTrackers.isEmpty {
-                result.append(TrackerCategory(label: category.label, trackers: filteredTrackers))
+            let trackersByDay = category.trackers.filter { tracker in
+                guard let schedule = tracker.schedule else { return true }
+                return schedule.contains(WeekDay.allCases[weekday > 1 ? weekday - 2 : weekday + 5])
             }
-            
-            if result.isEmpty {
-                filterButton.isHidden = true
+            if searchText.isEmpty && !trackersByDay.isEmpty {
+                result.append(TrackerCategory(label: category.label, trackers: trackersByDay))
             } else {
-                filterButton.isHidden = false
+                let filteredTrackers = trackersByDay.filter { tracker in
+                    tracker.label.lowercased().contains(searchText.lowercased())
+                }
+                
+                if !filteredTrackers.isEmpty {
+                    result.append(TrackerCategory(label: category.label, trackers: filteredTrackers))
+                }
             }
         }
-    return result
+        if result.isEmpty {
+            filterButton.isHidden = true
+        } else {
+            filterButton.isHidden = false
+        }
+        return result
     }
     
     // MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
@@ -124,7 +124,6 @@ final class TrackersViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @objc
     private func didTapPlusButton() {
         
@@ -137,7 +136,7 @@ final class TrackersViewController: UIViewController {
     
     @objc
     private func didChangedDatePicker(_ sender: UIDatePicker) {
-        selectedDate = Date.from(date: sender.date)!
+        currentDate = Date.from(date: sender.date)!
         collectionView.reloadData()
     }
     
@@ -209,11 +208,11 @@ extension TrackersViewController: UICollectionViewDelegate {
  extension TrackersViewController: UICollectionViewDataSource {
      func numberOfSections(in collectionView: UICollectionView) -> Int {
          checkMainPlaceholderVisability()
-         return visibleCategories.filter{$0.trackers.count > 0}.count
+         return visibleCategories.count
      }
 
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return categories[section].trackers.count
+         return visibleCategories[section].trackers.count
      }
 
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -223,7 +222,7 @@ extension TrackersViewController: UICollectionViewDelegate {
 
          let tracker = visibleCategories[indexPath.section].trackers[indexPath.row]
          let daysCount = completedTrackers.filter { $0.trackerId == tracker.id }.count
-         let isCompleted = completedTrackers.contains { $0.date == selectedDate && $0.trackerId == tracker.id }
+         let isCompleted = completedTrackers.contains { $0.date == currentDate && $0.trackerId == tracker.id }
          trackerCell.configure(with: tracker, days: daysCount, isCompleted: isCompleted)
          trackerCell.delegate = self
          return trackerCell
@@ -257,8 +256,7 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
         0
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
-        at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard
             kind == UICollectionView.elementKindSectionHeader,
             let view = collectionView.dequeueReusableSupplementaryView(
@@ -268,7 +266,7 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
             ) as? TrackerCategoryNames
         else { return UICollectionReusableView() }
         
-        let label = categories[indexPath.section].label
+        let label = visibleCategories[indexPath.section].label
         view.configure(with: label)
         
         return view
@@ -327,9 +325,9 @@ extension TrackersViewController: SetTrackersViewControllerDelegate {
 // MARK: - TrackerCellDelegate
  extension TrackersViewController: TrackerCellDelegate {
      func didTapCompleteButton(of cell: TrackerCell, with tracker: Tracker) {
-         let trackerRecord = TrackerRecord(trackerId: tracker.id, date: selectedDate)
+         let trackerRecord = TrackerRecord(trackerId: tracker.id, date: currentDate)
 
-         if completedTrackers.contains(where: { $0.date == selectedDate && $0.trackerId == tracker.id }) {
+         if completedTrackers.contains(where: { $0.date == currentDate && $0.trackerId == tracker.id }) {
              completedTrackers.remove(trackerRecord)
              cell.switchAddDayButton(to: false)
              cell.decreaseCount()

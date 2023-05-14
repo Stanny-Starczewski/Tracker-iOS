@@ -10,7 +10,7 @@ extension TrackerCategory {
                     label: "Поливать растения",
                     emoji: "❤️",
                     color: UIColor(named: "ColorSelection5")!,
-                    schedule: nil
+                    schedule: [.sunday]
                 )
             ]
         ),
