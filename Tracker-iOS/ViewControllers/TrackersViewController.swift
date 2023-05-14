@@ -1,7 +1,7 @@
 import UIKit
 
 final class TrackersViewController: UIViewController {
-    
+    // MARK: - UI Lazy properties
     private lazy var addButton: UIButton = {
         let button = UIButton.systemButton(
             with: UIImage(
@@ -17,18 +17,12 @@ final class TrackersViewController: UIViewController {
         return button
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Трекеры"
-        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
-        return label
-    }()
-    
-    let datePicker: UIDatePicker = {
+    private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = .WhiteDay
         datePicker.tintColor = .Blue
         datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
         datePicker.preferredDatePickerStyle = .compact
         datePicker.locale = Locale(identifier: "ru_RU")
         datePicker.calendar = Calendar(identifier: .iso8601)
@@ -43,30 +37,7 @@ final class TrackersViewController: UIViewController {
         return view
     }()
     
-    private let starIcon: UIImageView = {
-        let starView = UIImageView()
-        starView.image = UIImage(named: "StarIcon")
-        return starView
-    }()
-    
-    private let questionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.text = "Что будем отслеживать?"
-        label.textColor = .BlackDay
-        return label
-    }()
-    
-    let stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.spacing = 8
-        return stack
-    }()
-    
-    private let collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         view.backgroundColor = .WhiteDay
         view.register(
@@ -83,17 +54,20 @@ final class TrackersViewController: UIViewController {
     
     //MARK: - Properties
     
+    private let mainSpacePlaceholderStack = UIStackView()
+    private let searchSpacePlaceholderStack = UIStackView()
+    private let trackerLabel = UILabel()
     private var currentDate = Date()
-    private let params = GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, cellSpacing: 10)
-    private let categories: [TrackerCategory] = TrackerCategory.mockData
+    private let params = UICollectionView.GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, cellSpacing: 10)
+    private var categories: [TrackerCategory] = TrackerCategory.mockData {
+        didSet {
+            checkMainPlaceholderVisability()
+        }
+    }
+    private var complitedTrackers: Set<TrackerRecord> = []
     private var searchText = ""
     private var visibleCategories: [TrackerCategory] {
         guard !searchText.isEmpty else {
-            if categories.isEmpty {
-                stackView.isHidden = false
-            } else {
-                stackView.isHidden = true
-            }
             return categories
         }
         
@@ -105,13 +79,7 @@ final class TrackersViewController: UIViewController {
                 result.append(TrackerCategory(label: category.label, trackers: filteredTrackers))
             }
         }
-        
-        if result.isEmpty {
-            stackView.isHidden = false
-        } else {
-            stackView.isHidden = true
-        }
-        
+ 
         return result
     }
     
@@ -121,7 +89,16 @@ final class TrackersViewController: UIViewController {
         super.viewDidLoad()
         configureViews()
         configureConstraints()
-        
+        trackerLabel.configureLabel(
+            text: "Трекеры",
+            addToView: view,
+            ofSize: 34,
+            weight: .bold
+        )
+        mainSpacePlaceholderStack.configurePlaceholderStack(imageName: "StarIcon", text: "Что будем отслеживать?")
+        searchSpacePlaceholderStack.configurePlaceholderStack(imageName: "EmptyTracker", text: "Ничего не найдено")
+        checkMainPlaceholderVisability()
+        checkPlaceholderVisabilityAfterSearch()
     }
     
     // MARK: - Actions
@@ -135,71 +112,71 @@ final class TrackersViewController: UIViewController {
         present(navigationController, animated: true)
          
     }
+    
+    // MARK: - Methods
+    private func checkMainPlaceholderVisability() {
+        let isHidden = visibleCategories.isEmpty && searchSpacePlaceholderStack.isHidden
+        mainSpacePlaceholderStack.isHidden = !isHidden
+    }
+    
+    private func checkPlaceholderVisabilityAfterSearch() {
+        let isHidden = visibleCategories.isEmpty && searchBar.text != ""
+        searchSpacePlaceholderStack.isHidden = !isHidden
+    }
 }
-
 // MARK: - EXTENSIONS
  //MARK: - Layout methods
-
 private extension TrackersViewController {
-    struct GeometricParams {
-        let cellCount: CGFloat
-        let leftInset: CGFloat
-        let rightInset: CGFloat
-        let cellSpacing: CGFloat
-        let paddingWidth: CGFloat
-        
-        init(cellCount: CGFloat, leftInset: CGFloat, rightInset: CGFloat, cellSpacing: CGFloat) {
-            self.cellCount = cellCount
-            self.leftInset = leftInset
-            self.rightInset = rightInset
-            self.cellSpacing = cellSpacing
-            self.paddingWidth = leftInset + rightInset + CGFloat(cellCount - 1) * cellSpacing
-        }
-    }
     func configureViews() {
         view.backgroundColor = .WhiteDay
-        [titleLabel, addButton, datePicker, searchBar, stackView, collectionView].forEach { view.addSubview($0) }
-        stackView.addArrangedSubview(starIcon)
-        stackView.addArrangedSubview(questionLabel)
+        [trackerLabel, addButton, datePicker, searchBar, collectionView, mainSpacePlaceholderStack, searchSpacePlaceholderStack].forEach { view.addSubview($0) }
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        trackerLabel.translatesAutoresizingMaskIntoConstraints = false
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        starIcon.translatesAutoresizingMaskIntoConstraints = false
-        questionLabel.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
+        mainSpacePlaceholderStack.translatesAutoresizingMaskIntoConstraints = false
+        searchSpacePlaceholderStack.translatesAutoresizingMaskIntoConstraints = false
+
         collectionView.dataSource = self
         collectionView.delegate = self
     }
 
     func configureConstraints() {
         NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13),
-            addButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            titleLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 13),
-            datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            datePicker.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 13),
-            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            trackerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.1083),
+            trackerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 18),
+            datePicker.widthAnchor.constraint(equalToConstant: 120),
+            datePicker.centerYAnchor.constraint(equalTo: trackerLabel.centerYAnchor),
+            datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            addButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 18),
+            addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.07019),
+            searchBar.topAnchor.constraint(equalTo: trackerLabel.bottomAnchor, constant: 7),
+            searchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
+            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
+            searchBar.heightAnchor.constraint(equalToConstant: 36),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 34),
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mainSpacePlaceholderStack.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.495),
+            mainSpacePlaceholderStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchSpacePlaceholderStack.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.495),
+            searchSpacePlaceholderStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+}
+//MARK: - UICollectionViewDelegate
+extension TrackersViewController: UICollectionViewDelegate {
+    
 }
 
 // MARK: - UICollectionViewDataSource
  extension TrackersViewController: UICollectionViewDataSource {
      func numberOfSections(in collectionView: UICollectionView) -> Int {
-         visibleCategories.count
+         checkMainPlaceholderVisability()
+         return visibleCategories.filter{$0.trackers.count > 0}.count
      }
 
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -220,37 +197,33 @@ private extension TrackersViewController {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension TrackersViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         let availableSpace = collectionView.frame.width - params.paddingWidth
         let cellWidth = availableSpace / params.cellCount
-        return CGSize(width: cellWidth, height: 148)
+        return CGSize(width: cellWidth, height: 150)
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int) -> UIEdgeInsets
     {
-        UIEdgeInsets(top: 8, left: params.leftInset, bottom: 0, right: params.rightInset)
+        UIEdgeInsets(top: 8, left: params.leftInset, bottom: 16, right: params.rightInset)
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 9
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int) -> CGFloat
     {
         0
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        at indexPath: IndexPath) -> UICollectionReusableView
-    {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath) -> UICollectionReusableView {
         guard
             kind == UICollectionView.elementKindSectionHeader,
             let view = collectionView.dequeueReusableSupplementaryView(
@@ -266,9 +239,7 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
         return view
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int) -> CGSize
     {
         let indexPath = IndexPath(row: 0, section: section)
@@ -297,6 +268,7 @@ extension TrackersViewController: SetTrackersViewControllerDelegate {
 // MARK: - UISearchBarDelegate
  extension TrackersViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        checkMainPlaceholderVisability()
         searchBar.setShowsCancelButton(true, animated: true)
          return true
      }
@@ -308,10 +280,12 @@ extension TrackersViewController: SetTrackersViewControllerDelegate {
 
      func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
          searchBar.text = ""
+         self.searchText = ""
          searchBar.endEditing(true)
          searchBar.setShowsCancelButton(false, animated: true)
-         self.searchText = ""
+         searchBar.resignFirstResponder()
          collectionView.reloadData()
+         checkPlaceholderVisabilityAfterSearch()
      }
  }
 

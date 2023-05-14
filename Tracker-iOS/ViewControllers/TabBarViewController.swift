@@ -1,14 +1,14 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tabBar.tintColor = .Blue
         tabBar.barTintColor = .Gray
         tabBar.backgroundColor = .WhiteDay
-
+        
         tabBar.layer.borderColor = UIColor.LightGray.cgColor
         tabBar.layer.borderWidth = 1
         tabBar.layer.masksToBounds = true
