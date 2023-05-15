@@ -16,7 +16,7 @@ final class ScheduleViewController: UIViewController {
     }()
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .black
+        button.backgroundColor = .BlackDay
         button.setTitle("Готово", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.layer.cornerRadius = 16
