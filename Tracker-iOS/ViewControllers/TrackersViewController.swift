@@ -295,6 +295,28 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - AddTrackerViewControllerDelegate
 extension TrackersViewController: SetTrackersViewControllerDelegate {
     func didSelectTracker(with type: SetTrackersViewController.TrackerType) {
+        dismiss(animated: true)
+        let trackerFormViewController = TrackerFormViewController(type: type)
+        trackerFormViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: trackerFormViewController)
+        present(navigationController, animated: true)
+    }
+}
+
+extension TrackersViewController: TrackerFormViewControllerDelegate {
+    func didTapConfirmButton(categoryLabel: String, trackerToAdd: Tracker) {
+        dismiss(animated: true)
+        guard let categoryIndex = categories.firstIndex(where: { $0.label == categoryLabel }) else { return }
+        let updatedCategory = TrackerCategory(
+            label: categoryLabel,
+            trackers: categories[categoryIndex].trackers + [trackerToAdd]
+        )
+        categories[categoryIndex] = updatedCategory
+        collectionView.reloadData()
+    }
+    
+    func didTapCancelButton() {
+        dismiss(animated: true)
     }
 }
 

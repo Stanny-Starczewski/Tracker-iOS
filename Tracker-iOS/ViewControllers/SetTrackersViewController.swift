@@ -34,8 +34,22 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
      }()
 
      // MARK: - Properties
-     
      weak var delegate: SetTrackersViewControllerDelegate?
+     
+     private var labelText = ""
+     private var category: String?
+     private var schedule: [WeekDay]?
+     private var emoji: String?
+     private var color: UIColor?
+     
+     private var isConfirmButtonEnabled: Bool {
+         labelText.count > 0 && !isValidationMessageVisible
+     }
+     
+     private var isValidationMessageVisible = false
+     private var parameters = ["Категория", "Расписание"]
+     private let emojis = emojisArray
+     private let colors = UIColor.bunchOfSChoices
      
      // MARK: - Lifecycle
      override func viewDidLoad() {
@@ -59,7 +73,7 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
  }
 
 // MARK: - EXTENSIONS
-// MARK: - Layout methods
+// MARK: - Choice
 extension SetTrackersViewController {
     enum TrackerType {
         case habit, irregularEvent
