@@ -113,14 +113,14 @@
 		29EF3A642A0D704800F9FFCA /* Tracker-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				29EF3A7F2A0DA38500F9FFCA /* ViewControllers */,
+				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A9B2A10072100F9FFCA /* Trackers */,
 				29EF3A982A0FFD0B00F9FFCA /* Cells */,
-				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A822A0DA68600F9FFCA /* Helpers */,
 				2956053B2A1132FE008F0983 /* Extensions */,
 				29EF3A652A0D704800F9FFCA /* AppDelegate.swift */,
 				29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */,
-				29EF3A7F2A0DA38500F9FFCA /* ViewControllers */,
 				29EF3A732A0D704900F9FFCA /* Info.plist */,
 			);
 			path = "Tracker-iOS";

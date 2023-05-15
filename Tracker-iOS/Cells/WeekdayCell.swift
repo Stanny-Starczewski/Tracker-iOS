@@ -10,14 +10,14 @@ final class WeekdayCell: UITableViewCell {
     private lazy var listItem = ListOfItems()
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .BlackDay
         label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
     
     private lazy var switchView: UISwitch = {
         let switchView = UISwitch()
-        switchView.onTintColor = .blue
+        switchView.onTintColor = .Blue
         switchView.addTarget(self, action: #selector(didToggleSwitchView), for: .valueChanged)
         return switchView
     }()
