@@ -12,6 +12,7 @@
 		2925C4082A11A4F20040332B /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2925C4072A11A4F20040332B /* WeekdayCell.swift */; };
 		295605362A108A76008F0983 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295605352A108A76008F0983 /* UIStackView+Extension.swift */; };
 		295605382A108F48008F0983 /* Date Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295605372A108F48008F0983 /* Date Int+Extension.swift */; };
+		29675B3A2A1B19200092DC7C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29675B382A1B19200092DC7C /* Model.xcdatamodeld */; };
 		29EF3A662A0D704800F9FFCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A652A0D704800F9FFCA /* AppDelegate.swift */; };
 		29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */; };
 		29EF3A6A2A0D704800F9FFCA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A692A0D704800F9FFCA /* TabBarViewController.swift */; };
@@ -43,6 +44,7 @@
 		2925C4072A11A4F20040332B /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		295605352A108A76008F0983 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		295605372A108F48008F0983 /* Date Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Int+Extension.swift"; sourceTree = "<group>"; };
+		29675B392A1B19200092DC7C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		29EF3A622A0D704800F9FFCA /* Tracker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29EF3A652A0D704800F9FFCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		29675B372A1B18FD0092DC7C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				29675B382A1B19200092DC7C /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		29EF3A592A0D704800F9FFCA = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +123,7 @@
 		29EF3A642A0D704800F9FFCA /* Tracker-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				29675B372A1B18FD0092DC7C /* CoreData */,
 				29EF3A7F2A0DA38500F9FFCA /* ViewControllers */,
 				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A9B2A10072100F9FFCA /* Trackers */,
@@ -256,6 +267,7 @@
 				29EF3A9D2A10077500F9FFCA /* TrackerCell.swift in Sources */,
 				29EF3A932A0FFB8400F9FFCA /* ListOfItems.swift in Sources */,
 				29EF3A892A0FE3B900F9FFCA /* Tracker.swift in Sources */,
+				29675B3A2A1B19200092DC7C /* Model.xcdatamodeld in Sources */,
 				295605382A108F48008F0983 /* Date Int+Extension.swift in Sources */,
 				295605362A108A76008F0983 /* UIStackView+Extension.swift in Sources */,
 				29EF3A862A0E9A3200F9FFCA /* SetTrackersViewController.swift in Sources */,
@@ -490,6 +502,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		29675B382A1B19200092DC7C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				29675B392A1B19200092DC7C /* Model.xcdatamodel */,
+			);
+			currentVersion = 29675B392A1B19200092DC7C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29EF3A5A2A0D704800F9FFCA /* Project object */;
 }
