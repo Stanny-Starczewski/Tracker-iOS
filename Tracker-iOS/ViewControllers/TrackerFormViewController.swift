@@ -254,12 +254,14 @@ import UIKit
          
          colorsCollection.dataSource = self
          colorsCollection.delegate = self
+         
+         textField.delegate = self
 
          view.backgroundColor = .WhiteDay
          
          view.addSubview(scrollView)
          scrollView.addSubview(contentView)
-         [textField, validationMessage, parametersTableView, buttonsStack, emojisCollection, colorsCollection].forEach { contentView.addSubview($0) }
+         [textField, validationMessage, parametersTableView, emojisCollection, colorsCollection, buttonsStack].forEach { contentView.addSubview($0) }
          
          buttonsStack.addArrangedSubview(cancelButton)
          buttonsStack.addArrangedSubview(confirmButton)
@@ -311,6 +313,7 @@ import UIKit
             ),
             buttonsStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             buttonsStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            buttonsStack.topAnchor.constraint(equalTo: colorsCollection.bottomAnchor, constant: 16),
             buttonsStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             buttonsStack.heightAnchor.constraint(equalToConstant: 60)
          ])
@@ -540,6 +543,13 @@ extension TrackerFormViewController {
         func configure(with label: String) {
             titleLabel.text = label
         }
+    }
+}
+
+extension TrackerFormViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 // //MARK: - SHOW PREVIEW
