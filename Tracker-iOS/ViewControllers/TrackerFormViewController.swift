@@ -70,6 +70,19 @@ import UIKit
          return collection
      }()
      
+     private let colorsCollection: UICollectionView = {
+         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+         collection.isScrollEnabled = false
+         collection.allowsMultipleSelection = false
+         collection.register(
+             SelectionTitle.self,
+             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+             withReuseIdentifier: SelectionTitle.identifier
+         )
+         collection.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell.identifier)
+         return collection
+     }()
+     
      private let contentView: UIView = {
          let view = UIView()
          return view
@@ -240,12 +253,15 @@ import UIKit
          
          emojisCollection.dataSource = self
          emojisCollection.delegate = self
+         
+         colorsCollection.dataSource = self
+         colorsCollection.delegate = self
 
          view.backgroundColor = .WhiteDay
          
          view.addSubview(scrollView)
          scrollView.addSubview(contentView)
-         [textField, validationMessage, parametersTableView, buttonsStack, emojisCollection ].forEach { contentView.addSubview($0) }
+         [textField, validationMessage, parametersTableView, buttonsStack, emojisCollection, colorsCollection].forEach { contentView.addSubview($0) }
          
          buttonsStack.addArrangedSubview(cancelButton)
          buttonsStack.addArrangedSubview(confirmButton)
@@ -255,6 +271,7 @@ import UIKit
          parametersTableView.translatesAutoresizingMaskIntoConstraints = false
          buttonsStack.translatesAutoresizingMaskIntoConstraints = false
          emojisCollection.translatesAutoresizingMaskIntoConstraints = false
+         colorsCollection.translatesAutoresizingMaskIntoConstraints = false
          contentView.translatesAutoresizingMaskIntoConstraints = false
          scrollView.translatesAutoresizingMaskIntoConstraints = false
      }
@@ -288,6 +305,12 @@ import UIKit
             emojisCollection.topAnchor.constraint(equalTo: parametersTableView.bottomAnchor, constant: 32),
             emojisCollection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             emojisCollection.heightAnchor.constraint(equalToConstant: CGFloat(emojis.count) / params.cellCount * params.height + 18 + params.topInset + params.bottomInset),
+            colorsCollection.leadingAnchor.constraint(equalTo: emojisCollection.leadingAnchor),
+            colorsCollection.topAnchor.constraint(equalTo: emojisCollection.bottomAnchor, constant: 16),
+            colorsCollection.trailingAnchor.constraint(equalTo: emojisCollection.trailingAnchor),
+            colorsCollection.heightAnchor.constraint(
+                equalToConstant: CGFloat(colors.count) / params.cellCount * params.height + 18 + params.topInset + params.bottomInset
+            ),
             buttonsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             buttonsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             buttonsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -356,6 +379,7 @@ extension TrackerFormViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case emojisCollection: return emojis.count
+        case colorsCollection: return colors.count
         default: return 0
         }
     }
@@ -367,6 +391,11 @@ extension TrackerFormViewController: UICollectionViewDataSource {
             let emoji = emojis[indexPath.row]
             emojiCell.configure(with: emoji)
             return emojiCell
+        case colorsCollection:
+            guard let colorCell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as? ColorCell else { return UICollectionViewCell() }
+            let color = colors[indexPath.row]
+            colorCell.configure(with: color)
+            return colorCell
         default:
             return UICollectionViewCell()
         }
@@ -378,6 +407,7 @@ extension TrackerFormViewController: UICollectionViewDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) as? SelectionCellProtocol else { return }
         switch collectionView {
         case emojisCollection: data.emoji = emojis[indexPath.row]
+        case colorsCollection: data.color = colors[indexPath.row]
         default: break
         }
         cell.select()
@@ -444,6 +474,7 @@ extension TrackerFormViewController: UICollectionViewDelegateFlowLayout {
         var label: String
         switch collectionView {
         case emojisCollection: label = "Emoji"
+        case colorsCollection: label = "Цвет"
         default: label = ""
         }
         

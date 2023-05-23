@@ -14,6 +14,7 @@
 		295605382A108F48008F0983 /* Date Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295605372A108F48008F0983 /* Date Int+Extension.swift */; };
 		29675B3A2A1B19200092DC7C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29675B382A1B19200092DC7C /* Model.xcdatamodeld */; };
 		29675B3C2A1B1B8F0092DC7C /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B3B2A1B1B8F0092DC7C /* EmojiCell.swift */; };
+		29675B402A1C78590092DC7C /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B3F2A1C78590092DC7C /* ColorCell.swift */; };
 		29EF3A662A0D704800F9FFCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A652A0D704800F9FFCA /* AppDelegate.swift */; };
 		29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */; };
 		29EF3A6A2A0D704800F9FFCA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A692A0D704800F9FFCA /* TabBarViewController.swift */; };
@@ -47,6 +48,7 @@
 		295605372A108F48008F0983 /* Date Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Int+Extension.swift"; sourceTree = "<group>"; };
 		29675B392A1B19200092DC7C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		29675B3B2A1B1B8F0092DC7C /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
+		29675B3F2A1C78590092DC7C /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		29EF3A622A0D704800F9FFCA /* Tracker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29EF3A652A0D704800F9FFCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				29EF3A9C2A10077500F9FFCA /* TrackerCell.swift */,
 				2925C4072A11A4F20040332B /* WeekdayCell.swift */,
 				29675B3B2A1B1B8F0092DC7C /* EmojiCell.swift */,
+				29675B3F2A1C78590092DC7C /* ColorCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */,
 				29EF3A7A2A0D9F1F00F9FFCA /* Colors+Extension.swift in Sources */,
 				29EF3A9F2A1007D000F9FFCA /* TrackerCategoryNames.swift in Sources */,
+				29675B402A1C78590092DC7C /* ColorCell.swift in Sources */,
 				2925C4042A11904F0040332B /* TrackerTextField.swift in Sources */,
 				29675B3C2A1B1B8F0092DC7C /* EmojiCell.swift in Sources */,
 				29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */,
