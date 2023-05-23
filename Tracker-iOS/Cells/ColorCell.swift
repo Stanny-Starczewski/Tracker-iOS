@@ -35,9 +35,9 @@ final class ColorCell: UICollectionViewCell {
 // MARK: - Layout methods
 private extension ColorCell {
     func configureViews() {
+        contentView.addSubview(colorView)
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
-        contentView.addSubview(colorView)
         colorView.translatesAutoresizingMaskIntoConstraints = false
     }
     

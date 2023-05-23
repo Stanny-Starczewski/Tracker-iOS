@@ -2,7 +2,6 @@ import UIKit
 
 final class EmojiCell: UICollectionViewCell {
     // MARK: - Layout elements
-    
     private let emojiLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32)
@@ -34,9 +33,9 @@ final class EmojiCell: UICollectionViewCell {
 
 private extension EmojiCell {
     func configureViews() {
+        contentView.addSubview(emojiLabel)
         contentView.layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
-        contentView.addSubview(emojiLabel)
         
         emojiLabel.translatesAutoresizingMaskIntoConstraints = false
     }
