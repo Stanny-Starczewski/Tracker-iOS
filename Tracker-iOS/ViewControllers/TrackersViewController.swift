@@ -69,7 +69,7 @@ final class TrackersViewController: UIViewController {
     private let searchSpacePlaceholderStack = UIStackView()
     private let trackerLabel = UILabel()
     private var currentDate = Date()
-    private let params = UICollectionView.GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, cellSpacing: 10)
+    private let params = UICollectionView.GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, topInset: 8, bottomInset: 16, height: 148, cellSpacing: 10)
     private var categories: [TrackerCategory] = TrackerCategory.mockData {
         didSet {
             checkMainPlaceholderVisability()

@@ -90,7 +90,6 @@ private extension SetTrackersViewController {
         stackView.addArrangedSubview(irregularEventButton)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     func configureConstraints() {

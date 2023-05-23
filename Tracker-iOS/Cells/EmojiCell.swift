@@ -60,7 +60,7 @@ extension EmojiCell: SelectionCellProtocol {
     }
 }
 // MARK: - SelectionCellProtocol
-    protocol SelectionCellProtocol {
-        func select()
-        func deselect()
-    }
+protocol SelectionCellProtocol {
+    func select()
+    func deselect()
+}
