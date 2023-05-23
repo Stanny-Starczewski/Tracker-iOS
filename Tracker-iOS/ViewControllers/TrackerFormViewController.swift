@@ -173,8 +173,6 @@ import UIKit
          configureViews()
          configureConstraints()
 
-         data.color = colors.randomElement()
-
          checkFromValidation()
      }
 
@@ -292,9 +290,9 @@ import UIKit
             contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-            textField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            textField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             textField.heightAnchor.constraint(equalToConstant: 75),
             validationMessage.centerXAnchor.constraint(equalTo: textField.centerXAnchor),
             validationMessage.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 8),
@@ -311,9 +309,9 @@ import UIKit
             colorsCollection.heightAnchor.constraint(
                 equalToConstant: CGFloat(colors.count) / params.cellCount * params.height + 18 + params.topInset + params.bottomInset
             ),
-            buttonsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            buttonsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            buttonsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonsStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            buttonsStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            buttonsStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             buttonsStack.heightAnchor.constraint(equalToConstant: 60)
          ])
      }
