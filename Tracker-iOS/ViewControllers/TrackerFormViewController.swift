@@ -16,7 +16,7 @@ import UIKit
      private let validationMessage: UILabel = {
          let label = UILabel()
          label.font = UIFont.systemFont(ofSize: 17)
-         label.textColor = .Red
+         label.textColor = .ypRed
          label.text = "Ограничение 38 символов"
          return label
      }()
@@ -32,10 +32,10 @@ import UIKit
      private lazy var cancelButton: UIButton = {
          let button = makeButton()
          button.setTitle("Отменить", for: .normal)
-         button.setTitleColor(.Red, for: .normal)
+         button.setTitleColor(.ypRed, for: .normal)
          button.backgroundColor = .white
          button.layer.borderWidth = 1
-         button.layer.borderColor = UIColor.Red.cgColor
+         button.layer.borderColor = UIColor.ypRed.cgColor
          button.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
          return button
      }()
@@ -43,8 +43,8 @@ import UIKit
      private lazy var confirmButton: UIButton = {
          let button = makeButton()
          button.setTitle("Создать", for: .normal)
-         button.setTitleColor(.WhiteDay, for: .normal)
-         button.backgroundColor = .Gray
+         button.setTitleColor(.ypWhiteDay, for: .normal)
+         button.backgroundColor = .ypGray
          button.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
          button.isEnabled = false
          return button
@@ -119,10 +119,10 @@ import UIKit
      private var isConfirmButtonEnabled: Bool = false {
          willSet {
              if newValue {
-                 confirmButton.backgroundColor = .BlackDay
+                 confirmButton.backgroundColor = .ypBlackDay
                  confirmButton.isEnabled = true
              } else {
-                 confirmButton.backgroundColor = .Gray
+                 confirmButton.backgroundColor = .ypGray
                  confirmButton.isEnabled = false
              }
          }
@@ -257,7 +257,7 @@ import UIKit
          
          textField.delegate = self
 
-         view.backgroundColor = .WhiteDay
+         view.backgroundColor = .ypWhiteDay
          
          view.addSubview(scrollView)
          scrollView.addSubview(contentView)
@@ -295,7 +295,7 @@ import UIKit
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            textField.heightAnchor.constraint(equalToConstant: 75),
+            textField.heightAnchor.constraint(equalToConstant: ListOfItems.height),
             validationMessage.centerXAnchor.constraint(equalTo: textField.centerXAnchor),
             validationMessage.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 8),
             parametersTableView.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
@@ -395,7 +395,7 @@ extension TrackerFormViewController: UICollectionViewDataSource {
         case colorsCollection:
             guard let colorCell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as? ColorCell else { return UICollectionViewCell() }
             let color = colors[indexPath.row]
-            colorCell.configure(with: color)
+            colorCell.configure(with: color!)
             return colorCell
         default:
             return UICollectionViewCell()

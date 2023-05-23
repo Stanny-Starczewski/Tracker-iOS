@@ -13,14 +13,14 @@ final class TrackersViewController: UIViewController {
             )!,
             target: self,
             action: #selector(didTapPlusButton))
-        button.tintColor = .BlackDay
+        button.tintColor = .ypBlackDay
         return button
     }()
     
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
-        datePicker.backgroundColor = .WhiteDay
-        datePicker.tintColor = .Blue
+        datePicker.backgroundColor = .ypWhiteDay
+        datePicker.tintColor = .ypBlue
         datePicker.datePickerMode = .date
         datePicker.maximumDate = Date()
         datePicker.preferredDatePickerStyle = .compact
@@ -40,7 +40,7 @@ final class TrackersViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        view.backgroundColor = .WhiteDay
+        view.backgroundColor = .ypWhiteDay
         view.register(
             TrackerCell.self,
             forCellWithReuseIdentifier: TrackerCell.identifier
@@ -59,7 +59,7 @@ final class TrackersViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 16
-        button.backgroundColor = .Blue
+        button.backgroundColor = .ypBlue
         return button
     }()
     
@@ -155,7 +155,7 @@ final class TrackersViewController: UIViewController {
  //MARK: - Layout methods
 private extension TrackersViewController {
     func configureViews() {
-        view.backgroundColor = .WhiteDay
+        view.backgroundColor = .ypWhiteDay
         [trackerLabel, addButton, datePicker, searchBar, collectionView, mainSpacePlaceholderStack, searchSpacePlaceholderStack, filterButton].forEach { view.addSubview($0) }
         
         addButton.translatesAutoresizingMaskIntoConstraints = false

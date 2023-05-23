@@ -11,7 +11,7 @@ final class TextField: UITextField {
     convenience init(placeholder: String) {
         self.init()
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .BackgroundDay
+        backgroundColor = .ypBackgroundDay
         self.placeholder = placeholder
         clearButtonMode = .whileEditing
         layer.cornerRadius = 16

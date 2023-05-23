@@ -52,7 +52,7 @@ private extension EmojiCell {
 // MARK: - implementation SelectionCellProtocol
 extension EmojiCell: SelectionCellProtocol {
     func select() {
-        contentView.backgroundColor = .LightGray
+        contentView.backgroundColor = .ypLightGray
     }
     
     func deselect() {
