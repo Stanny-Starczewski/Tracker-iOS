@@ -236,13 +236,13 @@ extension TrackersViewController: UICollectionViewDelegateFlowLayout {
     {
         let availableSpace = collectionView.frame.width - params.paddingWidth
         let cellWidth = availableSpace / params.cellCount
-        return CGSize(width: cellWidth, height: 150)
+        return CGSize(width: cellWidth, height: params.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int) -> UIEdgeInsets
     {
-        UIEdgeInsets(top: 8, left: params.leftInset, bottom: 16, right: params.rightInset)
+        UIEdgeInsets(top: params.topInset, left: params.leftInset, bottom: params.bottomInset, right: params.rightInset)
     }
     
     
