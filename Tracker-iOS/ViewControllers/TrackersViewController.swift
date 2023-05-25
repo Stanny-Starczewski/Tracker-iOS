@@ -34,6 +34,7 @@ final class TrackersViewController: UIViewController {
         let view = UISearchBar()
         view.placeholder = "Поиск"
         view.searchBarStyle = .minimal
+        view.tintColor = .ypBlue
         view.delegate = self
         return view
     }()
