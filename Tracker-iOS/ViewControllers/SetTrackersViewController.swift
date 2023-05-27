@@ -84,13 +84,12 @@ private extension SetTrackersViewController {
     // MARK: - Layout methods
     func configureViews() {
         title = "Создание трекера"
-        view.backgroundColor = .WhiteDay
+        view.backgroundColor = .ypWhiteDay
         view.addSubview(stackView)
         stackView.addArrangedSubview(habitButton)
         stackView.addArrangedSubview(irregularEventButton)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     func configureConstraints() {

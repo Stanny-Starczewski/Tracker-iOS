@@ -10,14 +10,14 @@ final class WeekdayCell: UITableViewCell {
     private lazy var listItem = ListOfItems()
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .BlackDay
+        label.textColor = .ypBlackDay
         label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
     
     private lazy var switchView: UISwitch = {
         let switchView = UISwitch()
-        switchView.onTintColor = .Blue
+        switchView.onTintColor = .ypBlue
         switchView.addTarget(self, action: #selector(didToggleSwitchView), for: .valueChanged)
         return switchView
     }()
@@ -31,8 +31,8 @@ final class WeekdayCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setupContent()
-        setupConstraints()
+        configureViews()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -56,7 +56,7 @@ final class WeekdayCell: UITableViewCell {
 }
 
 private extension WeekdayCell {
-    func setupContent() {
+    func configureViews() {
         selectionStyle = .none
         [listItem, nameLabel, switchView].forEach { contentView.addSubview($0) }
         
@@ -66,7 +66,7 @@ private extension WeekdayCell {
 
     }
     
-    func setupConstraints() {
+    func configureConstraints() {
         NSLayoutConstraint.activate([
             listItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             listItem.topAnchor.constraint(equalTo: contentView.topAnchor),

@@ -5,11 +5,11 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = .Blue
-        tabBar.barTintColor = .Gray
-        tabBar.backgroundColor = .WhiteDay
+        tabBar.tintColor = .ypBlue
+        tabBar.barTintColor = .ypGray
+        tabBar.backgroundColor = .ypWhiteDay
         
-        tabBar.layer.borderColor = UIColor.LightGray.cgColor
+        tabBar.layer.borderColor = UIColor.ypLightGray.cgColor
         tabBar.layer.borderWidth = 1
         tabBar.layer.masksToBounds = true
         

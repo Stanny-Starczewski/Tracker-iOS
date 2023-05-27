@@ -5,7 +5,7 @@ final class ListOfItems: UIView {
 
     private let border: UIView = {
         let view = UIView()
-        view.backgroundColor = .Gray
+        view.backgroundColor = .ypGray
         view.isHidden = true
         return view
     }()
@@ -45,7 +45,7 @@ extension ListOfItems {
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 16
-        backgroundColor = .BackgroundDay
+        backgroundColor = .ypBackgroundDay
 
         addSubview(border)
         border.translatesAutoresizingMaskIntoConstraints = false
@@ -63,5 +63,5 @@ extension ListOfItems {
     enum Position {
         case first, middle, last, alone
     }
-    static let height: CGFloat = 75
+    static let height: CGFloat = 65
 }

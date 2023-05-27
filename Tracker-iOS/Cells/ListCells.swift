@@ -6,14 +6,14 @@ final class ListCell: UITableViewCell {
     private lazy var listItem = ListOfItems()
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .BlackDay
+        label.textColor = .ypBlackDay
         label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
     
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .Gray
+        label.textColor = .ypGray
         label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
@@ -28,7 +28,7 @@ final class ListCell: UITableViewCell {
     private let chooseButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "ArrowHead"), for: .normal)
-        button.tintColor = .Gray
+        button.tintColor = .ypGray
         return button
     }()
     

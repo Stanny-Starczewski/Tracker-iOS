@@ -20,7 +20,7 @@ final class StatisticViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.text = "Анализировать пока нечего"
-        label.textColor = .BlackDay
+        label.textColor = .ypBlackDay
         return label
     }()
     
@@ -45,7 +45,7 @@ final class StatisticViewController: UIViewController {
 // MARK: - Layout methods
 private extension StatisticViewController {
     func configureViews() {
-        view.backgroundColor = .WhiteDay
+        view.backgroundColor = .ypWhiteDay
         [nameLabel, emptyStack].forEach { view.addSubview($0) }
         emptyStack.addArrangedSubview(emptyImageView)
         emptyStack.addArrangedSubview(emptyLabel)
