@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2902034C2A29648600F217F9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2902034B2A29648600F217F9 /* OnboardingViewController.swift */; };
 		2925C4042A11904F0040332B /* TrackerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2925C4032A11904F0040332B /* TrackerTextField.swift */; };
 		2925C4062A11A3CD0040332B /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2925C4052A11A3CD0040332B /* ScheduleViewController.swift */; };
 		2925C4082A11A4F20040332B /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2925C4072A11A4F20040332B /* WeekdayCell.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2902034B2A29648600F217F9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2925C4032A11904F0040332B /* TrackerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTextField.swift; sourceTree = "<group>"; };
 		2925C4052A11A3CD0040332B /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		2925C4072A11A4F20040332B /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2902034A2A29646B00F217F9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2902034B2A29648600F217F9 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		2956053B2A1132FE008F0983 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 		29EF3A642A0D704800F9FFCA /* Tracker-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				2902034A2A29646B00F217F9 /* Onboarding */,
 				29EF3A7F2A0DA38500F9FFCA /* ViewControllers */,
 				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A9B2A10072100F9FFCA /* Trackers */,
@@ -308,6 +319,7 @@
 				29EF3A912A0FF49900F9FFCA /* TrackerFormViewController.swift in Sources */,
 				29EF3A842A0DBA1800F9FFCA /* ShowPreviewUI.swift in Sources */,
 				29EF3A8B2A0FE3CA00F9FFCA /* TrackerCategory.swift in Sources */,
+				2902034C2A29648600F217F9 /* OnboardingViewController.swift in Sources */,
 				29EF3AA72A106C7700F9FFCA /* UILabel+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

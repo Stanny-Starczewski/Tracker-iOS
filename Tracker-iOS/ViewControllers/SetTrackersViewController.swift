@@ -8,7 +8,7 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
 
      private lazy var  habitButton: UIButton = {
          let button = UIButton()
-         button.backgroundColor = .black
+         button.backgroundColor = .ypBlackDay
          button.setTitle("Привычка", for: .normal)
          button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
          button.layer.cornerRadius = 16
@@ -18,7 +18,7 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
 
      private lazy var  irregularEventButton: UIButton = {
          let button = UIButton()
-         button.backgroundColor = .black
+         button.backgroundColor = .ypBlackDay
          button.setTitle("Нерегулярное событие", for: .normal)
          button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
          button.layer.cornerRadius = 16

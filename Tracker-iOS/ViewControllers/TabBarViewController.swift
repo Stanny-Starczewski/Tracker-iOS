@@ -5,6 +5,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.set(true, forKey: "visitedBefore")
+        
         tabBar.tintColor = .ypBlue
         tabBar.barTintColor = .ypGray
         tabBar.backgroundColor = .ypWhiteDay
