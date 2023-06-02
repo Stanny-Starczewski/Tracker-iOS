@@ -5,8 +5,8 @@ protocol TrackerCellDelegate: AnyObject {
 }
 
 final class TrackerCell: UICollectionViewCell {
-    // MARK: - Layout elements
     
+    // MARK: - Layout elements
     private let cardView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16

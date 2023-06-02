@@ -1,8 +1,8 @@
 import UIKit
 
 final class TrackerCategoryNames: UICollectionReusableView {
+    
     // MARK: - Layout elements
-
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 19, weight: .bold)

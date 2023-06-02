@@ -5,8 +5,8 @@ protocol ScheduleViewControllerDelegate: AnyObject {
 }
 
 final class ScheduleViewController: UIViewController {
-    // MARK: - Layout elements
     
+    // MARK: - Layout elements
     private let weekdaysTableView: UITableView = {
         let table = UITableView()
         table.register(WeekdayCell.self, forCellReuseIdentifier: WeekdayCell.identifier)
@@ -46,7 +46,6 @@ final class ScheduleViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @objc
     private func didTapConfirmButton() {
         let weekdays = Array(selectedWeekdays).sorted()
@@ -84,7 +83,6 @@ private extension ScheduleViewController {
 }
 
 // MARK: - UITableViewDataSource
-
 extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         WeekDay.allCases.count
@@ -116,7 +114,6 @@ extension ScheduleViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-
 extension ScheduleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         ListOfItems.height
@@ -124,7 +121,6 @@ extension ScheduleViewController: UITableViewDelegate {
 }
 
 // MARK: - WeekdayCellDelegate
-
 extension ScheduleViewController: WeekdayCellDelegate {
     func didToggleSwitchView(to isSelected: Bool, of weekday: WeekDay) {
         if isSelected {

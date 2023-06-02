@@ -65,7 +65,6 @@ final class TrackersViewController: UIViewController {
     }()
     
     //MARK: - Properties
-    
     private let mainSpacePlaceholderStack = UIStackView()
     private let searchSpacePlaceholderStack = UIStackView()
     private let trackerLabel = UILabel()

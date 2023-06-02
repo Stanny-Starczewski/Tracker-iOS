@@ -94,7 +94,6 @@ import UIKit
      }()
 
      // MARK: - Properties
-     
      weak var delegate: TrackerFormViewControllerDelegate?
      private let type: SetTrackersViewController.TrackerType
      private let trackerCategoryStore = TrackerCategoryStore()
@@ -178,7 +177,6 @@ import UIKit
      }
 
      // MARK: - Actions
-     
      @objc
      private func didChangedLabelTextField(_ sender: UITextField) {
          guard let text = sender.text else { return }
@@ -541,7 +539,6 @@ extension TrackerFormViewController {
         }
         
         // MARK: - Methods
-        
         func configure(with label: String) {
             titleLabel.text = label
         }

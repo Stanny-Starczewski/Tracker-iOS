@@ -6,6 +6,7 @@ protocol TrackerRecordStoreDelegate: AnyObject {
 }
 
 final class TrackerRecordStore: NSObject {
+    
     // MARK: - Properties
     weak var delegate: TrackerRecordStoreDelegate?
     
@@ -72,6 +73,7 @@ final class TrackerRecordStore: NSObject {
     }
 }
 
+// MARK: - EXTENSIONS
 extension TrackerRecordStore {
     enum StoreError: Error {
         case decodeError

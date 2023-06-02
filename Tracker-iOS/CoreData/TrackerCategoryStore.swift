@@ -65,6 +65,7 @@ final class TrackerCategoryStore: NSObject {
     }
 }
 
+// MARK: - EXTENSIONS
 extension TrackerCategoryStore {
     enum StoreError: Error {
         case decodeError

@@ -39,6 +39,7 @@ final class OnboardingViewController: UIPageViewController {
         return label
     }()
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configueView()

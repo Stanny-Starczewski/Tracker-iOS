@@ -1,8 +1,8 @@
 import UIKit
 
 final class ListCell: UITableViewCell {
-    // MARK: - Layout elements
     
+    // MARK: - Layout elements
     private lazy var listItem = ListOfItems()
     private let nameLabel: UILabel = {
         let label = UILabel()
