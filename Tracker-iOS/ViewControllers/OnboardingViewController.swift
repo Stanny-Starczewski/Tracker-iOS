@@ -3,11 +3,15 @@ import UIKit
 final class OnboardingViewController: UIPageViewController {
     
     // MARK: - UI Lazy properties
+    
     private lazy var pages: [UIViewController] = {
-        let firstPage = UIViewController()
-        firstPage.view.backgroundColor = .ypBlue
-        let secondPage = UIViewController()
-        secondPage.view.backgroundColor = .ypRed
+        let firstPage = OnboardingPageViewController()
+        firstPage.backgroundImage.image = UIImage(named: "OnboardingBackground_1")
+        firstPage.label.text = "Отслеживайте только то, что хотите"
+        let secondPage = OnboardingPageViewController()
+        secondPage.backgroundImage.image = UIImage(named: "OnboardingBackground_2")
+        secondPage.label.text = "Даже если это не литры воды и йога"
+
         return [firstPage, secondPage]
     }()
     
@@ -71,18 +75,13 @@ extension OnboardingViewController {
             setViewControllers([first], direction: .forward, animated: true)
         }
 
-        [label, pageControl, enterButton].forEach { view.addSubview($0) }
+        [pageControl, enterButton].forEach { view.addSubview($0) }
         enterButton.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
-
     }
     
     func configureConstraints() {
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            label.bottomAnchor.constraint(equalTo: enterButton.topAnchor, constant: -160),
             pageControl.bottomAnchor.constraint(equalTo: enterButton.topAnchor, constant: -24),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             enterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -113,15 +112,12 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
 // MARK: - UIPageViewControllerDelegate
 extension OnboardingViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let currentViewController = pageViewController.viewControllers?.first,
-           let currentIndex = pages.firstIndex(of: currentViewController) {
-            pageControl.currentPage = currentIndex
-            if currentIndex == 1 {
-                animateTextChange(for: label, newText: "Даже если это не литры воды и йога")
-            } else {
-                animateTextChange(for: label, newText: "Отслеживайте только то, что хотите")
-            }
-        }
+        guard
+            let currentViewController = pageViewController.viewControllers?.first,
+            let currentIndex = pages.firstIndex(of: currentViewController)
+        else { return }
+        
+        pageControl.currentPage = currentIndex
     }
 }
 //MARK: - SHOW PREVIEW
