@@ -11,7 +11,6 @@ final class OnboardingViewController: UIPageViewController {
         let secondPage = OnboardingPageViewController()
         secondPage.backgroundImage.image = UIImage(named: "OnboardingBackground_2")
         secondPage.label.text = "Даже если это не литры воды и йога"
-
         return [firstPage, secondPage]
     }()
     
@@ -30,7 +29,6 @@ final class OnboardingViewController: UIPageViewController {
         control.numberOfPages = pages.count
         control.currentPage = 0
         control.currentPageIndicatorTintColor = .ypBlackDay
-        control.pageIndicatorTintColor = UIColor(red: 0.102, green: 0.106, blue: 0.133, alpha: 0.3)
         return control
     }()
     
