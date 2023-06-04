@@ -30,8 +30,6 @@ final class OnboardingPageViewController: UIViewController {
 // MARK: - Layout methods
 extension OnboardingPageViewController {
     private func configueView() {
-        view.addSubview(backgroundImage)
-        view.addSubview(label)
         [backgroundImage, label].forEach { view.addSubview($0) }
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
