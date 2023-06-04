@@ -31,16 +31,7 @@ final class OnboardingViewController: UIPageViewController {
         control.currentPageIndicatorTintColor = .ypBlackDay
         return control
     }()
-    
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = "Отслеживайте только то, что хотите"
-        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
+        
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
