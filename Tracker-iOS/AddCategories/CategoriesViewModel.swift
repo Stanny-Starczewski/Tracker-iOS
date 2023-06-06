@@ -2,8 +2,7 @@ import Foundation
 
 protocol CategoriesViewModelDelegate: AnyObject {
     func didUpdateCategories()
-    func didSelectCategory()
-    func didConfirm(_ category: TrackerCategory)
+    func didSelectCategory(_ category: TrackerCategory)
 }
 
 final class CategoriesViewModel {
@@ -21,7 +20,8 @@ final class CategoriesViewModel {
     
     private(set) var selectedCategory: TrackerCategory? = nil {
         didSet {
-            delegate?.didSelectCategory()
+            guard let selectedCategory else { return }
+            delegate?.didSelectCategory(selectedCategory)
         }
     }
     
@@ -40,10 +40,22 @@ final class CategoriesViewModel {
         selectedCategory = categories[indexPath.row]
     }
     
-    func didTapButton() {
-        if let selectedCategory {
-            delegate?.didConfirm(selectedCategory)
+    func handleCategoryFormConfirm(data: TrackerCategory.Data) {
+        if categories.contains(where: { $0.id == data.id }) {
+            updateCategory(with: data)
+        } else {
+            addCategory(with: data.label)
         }
+    }
+    
+    func deleteCategory(_ category: TrackerCategory) {
+        do {
+            try trackerCategoryStore.deleteCategory(category)
+            loadCategories()
+            if category == selectedCategory {
+                selectedCategory = nil
+            }
+        } catch {}
     }
     
     // MARK: - Private
@@ -56,6 +68,20 @@ final class CategoriesViewModel {
         } catch {
             return []
         }
+    }
+    
+    private func addCategory(with label: String) {
+        do {
+            try trackerCategoryStore.makeCategory(with: label)
+            loadCategories()
+        } catch {}
+    }
+    
+    private func updateCategory(with data: TrackerCategory.Data) {
+        do {
+            try trackerCategoryStore.updateCategory(with: data)
+            loadCategories()
+        } catch {}
     }
 }
 

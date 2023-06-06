@@ -173,7 +173,6 @@ import UIKit
 
          configureViews()
          configureConstraints()
-
          checkFromValidation()
      }
 
@@ -249,10 +248,8 @@ import UIKit
          
          parametersTableView.dataSource = self
          parametersTableView.delegate = self
-         
          emojisCollection.dataSource = self
          emojisCollection.delegate = self
-         
          colorsCollection.dataSource = self
          colorsCollection.delegate = self
          
@@ -355,16 +352,17 @@ extension TrackerFormViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let categoriesViewController = CategoriesViewController(selectedCategory: category)
-            categoriesViewController.delegate = self
-            let navigationController = UINavigationController(rootViewController: categoriesViewController)
+            let SetCategoriesViewController = SetCategoriesViewController(selectedCategory: category)
+            SetCategoriesViewController.delegate = self
+            let navigationController = UINavigationController(rootViewController: SetCategoriesViewController)
+            navigationController.isModalInPresentation = true
             present(navigationController, animated: true)
         case 1:
             guard let schedule = data.schedule else { return }
             let scheduleViewController = ScheduleViewController(selectedWeekdays: schedule)
             scheduleViewController.delegate = self
             let navigationController = UINavigationController(rootViewController: scheduleViewController)
-            present(navigationController, animated: true)
+            present(navigationController,    animated: true)
         default:
             return
         }
@@ -374,8 +372,8 @@ extension TrackerFormViewController: UITableViewDelegate {
         }
     }
 
-// MARK: - CategoriesViewControllerDelegate
- extension TrackerFormViewController: CategoriesViewControllerDelegate {
+// MARK: - SetCategoriesViewControllerDelegate
+ extension TrackerFormViewController: SetCategoriesViewControllerDelegate {
      func didConfirm(_ category: TrackerCategory) {
          self.category = category
          parametersTableView.reloadData()

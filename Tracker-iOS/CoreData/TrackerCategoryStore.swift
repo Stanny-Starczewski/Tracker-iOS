@@ -42,8 +42,6 @@ final class TrackerCategoryStore: NSObject {
     init(context: NSManagedObjectContext) throws {
         self.context = context
         super.init()
-        
-        try setupCategories(with: context)
     }
     
     // MARK: - Methods
@@ -63,38 +61,47 @@ final class TrackerCategoryStore: NSObject {
         return TrackerCategory(id: id,label: label)
     }
     
-    private func setupCategories(with context: NSManagedObjectContext) throws {
-        let checkRequest = TrackerCategoryCD.fetchRequest()
-        let result = try context.fetch(checkRequest)
-        
-        guard result.count == 0 else {
-            categories = try result.map({ try makeCategory(from: $0) })
-            return
-        }
-        
-        let _ = [
-            TrackerCategory(label: "Домашний уют"),
-            TrackerCategory(label: "Радостные мелочи"),
-            TrackerCategory(label: "Самочувствие"),
-            TrackerCategory(label: "Важное"),
-            TrackerCategory(label: "Привычки"),
-            TrackerCategory(label: "Спорт")
-        ].map { category in
-            let categoryCD = TrackerCategoryCD(context: context)
-            categoryCD.categoryId = category.id.uuidString
-            categoryCD.createdAt = Date()
-            categoryCD.label = category.label
-            return categoryCD
-        }
+    @discardableResult
+    func makeCategory(with label: String) throws -> TrackerCategory {
+        let category = TrackerCategory(label: label)
+        let categoryCD = TrackerCategoryCD(context: context)
+        categoryCD.categoryId = category.id.uuidString
+        categoryCD.createdAt = Date()
+        categoryCD.label = category.label
+        try context.save()
+        return category
+    }
+    
+    func updateCategory(with data: TrackerCategory.Data) throws {
+        let category = try getCategoryCD(by: data.id)
+        category.label = data.label
+        try context.save()
+    }
+    
+    func deleteCategory(_ category: TrackerCategory) throws {
+        let categoryToDelete = try getCategoryCD(by: category.id)
+        context.delete(categoryToDelete)
         
         try context.save()
+    }
+    // MARK: - Private
+    private func getCategoryCD(by id: UUID) throws -> TrackerCategoryCD {
+        fetchedResultsController.fetchRequest.predicate = NSPredicate(
+            format: "%K == %@",
+            #keyPath(TrackerCategoryCD.categoryId), id.uuidString
+        )
+        try fetchedResultsController.performFetch()
+        guard let category = fetchedResultsController.fetchedObjects?.first else { throw StoreError.fetchCategoryError }
+        fetchedResultsController.fetchRequest.predicate = nil
+        try fetchedResultsController.performFetch()
+        return category
     }
 }
 
 // MARK: - EXTENSIONS
 extension TrackerCategoryStore {
     enum StoreError: Error {
-        case decodeError
+        case decodeError, fetchCategoryError
     }
 }
 
