@@ -103,7 +103,8 @@ import UIKit
          }
      }
      
-     private lazy var category: TrackerCategory? = trackerCategoryStore.categories.randomElement() {
+     private lazy var category: TrackerCategory? = nil 
+     {
          didSet {
              checkFromValidation()
          }
@@ -353,6 +354,11 @@ import UIKit
 extension TrackerFormViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
+        case 0:
+            let categoriesViewController = CategoriesViewController(selectedCategory: category)
+            categoriesViewController.delegate = self
+            let navigationController = UINavigationController(rootViewController: categoriesViewController)
+            present(navigationController, animated: true)
         case 1:
             guard let schedule = data.schedule else { return }
             let scheduleViewController = ScheduleViewController(selectedWeekdays: schedule)
@@ -367,6 +373,16 @@ extension TrackerFormViewController: UITableViewDelegate {
             ListOfItems.height
         }
     }
+
+// MARK: - CategoriesViewControllerDelegate
+ extension TrackerFormViewController: CategoriesViewControllerDelegate {
+     func didConfirm(_ category: TrackerCategory) {
+         self.category = category
+         parametersTableView.reloadData()
+         dismiss(animated: true)
+     }
+ }
+
 // MARK: - ScheduleViewControllerDelegate
 extension TrackerFormViewController: ScheduleViewControllerDelegate {
     func didConfirm(_ schedule: [WeekDay]) {
@@ -384,7 +400,7 @@ extension TrackerFormViewController: UICollectionViewDataSource {
         default: return 0
         }
     }
-    
+// MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case emojisCollection:

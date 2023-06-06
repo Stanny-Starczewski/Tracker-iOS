@@ -1,11 +1,37 @@
 import UIKit
 import CoreData
 
+protocol TrackerCategoryStoreDelegate: AnyObject {
+    func didUpdate()
+}
+
 final class TrackerCategoryStore: NSObject {
     // MARK: - Properties
+    
+    weak var delegate: TrackerCategoryStoreDelegate?
+    var categoriesCoreData: [TrackerCategoryCD] {
+        fetchedResultsController.fetchedObjects ?? []
+    }
+    
     var categories = [TrackerCategory]()
     
     private let context: NSManagedObjectContext
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController<TrackerCategoryCD> = {
+        let fetchRequest = NSFetchRequest<TrackerCategoryCD>(entityName: "TrackerCategoryCD")
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \TrackerCategoryCD.createdAt, ascending: true)
+        ]
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        fetchedResultsController.delegate = self
+        try? fetchedResultsController.performFetch()
+        return fetchedResultsController
+    }()
 
     // MARK: - Lifecycle
     convenience override init() {
@@ -28,7 +54,7 @@ final class TrackerCategoryStore: NSObject {
         return category[0]
     }
     
-    private func makeCategory(from coreData: TrackerCategoryCD) throws -> TrackerCategory {
+    func makeCategory(from coreData: TrackerCategoryCD) throws -> TrackerCategory {
         guard
             let idString = coreData.categoryId,
             let id = UUID(uuidString: idString),
@@ -72,3 +98,9 @@ extension TrackerCategoryStore {
     }
 }
 
+//MARK: - NSFetchedResultsControllerDelegate
+extension TrackerCategoryStore: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        delegate?.didUpdate()
+    }
+}

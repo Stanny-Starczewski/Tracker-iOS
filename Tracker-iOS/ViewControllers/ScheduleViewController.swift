@@ -53,8 +53,8 @@ final class ScheduleViewController: UIViewController {
     }
 }
 
+// MARK: - EXTENSIONS
 // MARK: - Layout methods
-
 private extension ScheduleViewController {
     func configureViews() {
         title = "Расписание"

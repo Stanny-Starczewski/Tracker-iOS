@@ -5,7 +5,7 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
 }
 
  final class SetTrackersViewController: UIViewController {
-
+     // MARK: - Layout elements
      private lazy var  habitButton: UIButton = {
          let button = UIButton()
          button.backgroundColor = .ypBlackDay

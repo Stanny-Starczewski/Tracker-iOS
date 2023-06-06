@@ -1,7 +1,6 @@
 import UIKit
 
 final class OnboardingPageViewController: UIViewController {
-    
     // MARK: - UI Lazy properties
     lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()

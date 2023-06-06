@@ -3,7 +3,6 @@ import UIKit
 final class OnboardingViewController: UIPageViewController {
     
     // MARK: - UI Lazy properties
-    
     private lazy var pages: [UIViewController] = {
         let firstPage = OnboardingPageViewController()
         firstPage.backgroundImage.image = UIImage(named: "OnboardingBackground_1")
