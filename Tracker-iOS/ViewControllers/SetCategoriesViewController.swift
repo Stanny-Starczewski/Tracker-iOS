@@ -12,6 +12,7 @@ final class SetCategoriesViewController: UIViewController {
         table.separatorStyle = .none
         table.allowsMultipleSelection = false
         table.backgroundColor = .clear
+        table.isScrollEnabled = true
         table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         return table
     }()

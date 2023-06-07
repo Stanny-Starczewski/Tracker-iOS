@@ -29,13 +29,8 @@ import UIKit
      private var data: TrackerCategory.Data
      private var isConfirmButtonEnabled: Bool = false {
          willSet {
-             if newValue {
-                 readyButton.backgroundColor = .ypBlackDay
-                 readyButton.isEnabled = true
-             } else {
-                 readyButton.backgroundColor = .ypGray
-                 readyButton.isEnabled = false
-             }
+             readyButton.backgroundColor = newValue ? .ypBlackDay : .ypGray
+             readyButton.isEnabled = newValue ? true : false
          }
      }
 
