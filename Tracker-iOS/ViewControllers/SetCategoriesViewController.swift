@@ -16,10 +16,7 @@ final class SetCategoriesViewController: UIViewController {
         return table
     }()
     
-    private let starCombined = StarCombined(label: """
-        Привычки и события можно
-        объединить по смыслу
-        """)
+    private let starCombined = UIStackView()
         
     private lazy var addButton: UIButton = {
         let button = UIButton()
@@ -51,6 +48,10 @@ final class SetCategoriesViewController: UIViewController {
         configureConstraints()
         viewModel.delegate = self
         viewModel.loadCategories()
+        starCombined.configurePlaceholderStack(imageName: "StarIcon", text: """
+        Привычки и события можно
+        объединить по смыслу
+        """)
     }
     
     // MARK: - Actions
@@ -202,48 +203,6 @@ extension SetCategoriesViewController: CategoryFormViewControllerDelegate {
     }
 }
 
-// MARK: - Habits and events can be combined in meaning view
-extension SetCategoriesViewController {
-    final class StarCombined: UIStackView {
-        private let starCombinedImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "StarIcon")
-            return imageView
-        }()
-        
-        private let starCombinedLabel: UILabel = {
-            let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-            label.textColor = .ypBlackDay
-            label.textAlignment = .center
-            label.numberOfLines = 2
-            return label
-        }()
-        
-        convenience init(label: String) {
-            self.init()
-            starCombinedLabel.text = label
-            setupUI()
-            configureViews()
-        }
-        
-        private func setupUI() {
-            self.translatesAutoresizingMaskIntoConstraints = false
-            self.axis = .vertical
-            self.alignment = .center
-            self.spacing = 8
-        }
-        
-        private func configureViews() {
-            addArrangedSubview(starCombinedImageView)
-            addArrangedSubview(starCombinedLabel)
-            
-            starCombinedImageView.translatesAutoresizingMaskIntoConstraints = false
-            starCombinedLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        }
-    }
-}
 //// MARK: - SHOW PREVIEW
 //
 //import SwiftUI
