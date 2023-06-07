@@ -6,12 +6,8 @@ final class StatisticViewController: UIViewController {
     private let mainSpacePlaceholderStack = UIStackView()
     
     // MARK: - Life cicle
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .darkContent
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setNeedsStatusBarAppearanceUpdate()
         view.backgroundColor = .ypWhiteDay
         statisticLabel.configureLabel(
             text: "Статистика",
