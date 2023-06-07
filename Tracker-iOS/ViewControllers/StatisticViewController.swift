@@ -1,11 +1,11 @@
 import UIKit
 
 final class StatisticViewController: UIViewController {
-    // MARK: - UI
+    // MARK: - Properties
     private let statisticLabel = UILabel()
     private let mainSpacePlaceholderStack = UIStackView()
     
-    // MARK: - Life cicle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypWhiteDay
