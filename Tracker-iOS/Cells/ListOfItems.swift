@@ -2,7 +2,6 @@ import UIKit
 
 final class ListOfItems: UIView {
     // MARK: - Layout elements
-
     private let border: UIView = {
         let view = UIView()
         view.backgroundColor = .ypGray
@@ -21,7 +20,7 @@ final class ListOfItems: UIView {
     }
 
     // MARK: - Methods
-    func configure(with position: Position = .middle) {
+    func configure(with position: Position) {
         layer.masksToBounds = true
         layer.cornerRadius = 10
 
@@ -35,7 +34,13 @@ final class ListOfItems: UIView {
         case .last:
             layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         case .alone:
-            break
+            border.isHidden = true
+            layer.maskedCorners = [
+                .layerMinXMaxYCorner,
+                .layerMaxXMaxYCorner,
+                .layerMinXMinYCorner,
+                .layerMaxXMinYCorner
+            ]
         }
     }
 }

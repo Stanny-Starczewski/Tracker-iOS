@@ -32,6 +32,7 @@ final class ColorCell: UICollectionViewCell {
     }
 }
 
+// MARK: - EXTENSIONS
 // MARK: - Layout methods
 private extension ColorCell {
     func configureViews() {

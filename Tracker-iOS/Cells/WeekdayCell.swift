@@ -5,8 +5,8 @@ protocol WeekdayCellDelegate: AnyObject {
 }
 
 final class WeekdayCell: UITableViewCell {
-    // MARK: - Layout elements
     
+    // MARK: - Layout elements
     private lazy var listItem = ListOfItems()
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -55,6 +55,8 @@ final class WeekdayCell: UITableViewCell {
     }
 }
 
+// MARK: - EXTENSIONS
+// MARK: - Layout methods
 private extension WeekdayCell {
     func configureViews() {
         selectionStyle = .none

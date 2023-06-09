@@ -29,8 +29,8 @@ final class EmojiCell: UICollectionViewCell {
     }
 }
 
+// MARK: - EXTENSIONS
 // MARK: - Layout methods
-
 private extension EmojiCell {
     func configureViews() {
         contentView.addSubview(emojiLabel)

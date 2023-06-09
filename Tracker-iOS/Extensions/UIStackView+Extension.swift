@@ -12,6 +12,7 @@ extension UIStackView {
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.text = text
         label.textAlignment = .center
+        label.numberOfLines = 2
         self.addArrangedSubview(imageView)
         self.addArrangedSubview(label)
         self.axis = .vertical

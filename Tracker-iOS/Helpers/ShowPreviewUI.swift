@@ -13,3 +13,18 @@ extension UIViewController {
         Preview(vc: self).edgesIgnoringSafeArea(.all)
     }
 }
+
+extension UITableViewCell {
+
+    private struct Preview: UIViewRepresentable {
+        let tv: UITableViewCell
+        typealias UIViewType = UITableViewCell
+
+        func makeUIView(context: Context) ->  UITableViewCell { tv }
+        func updateUIView(_ uiView: UITableViewCell, context: Context) { }
+    }
+
+    func showPreview() -> some View {
+        Preview(tv: self).edgesIgnoringSafeArea(.all)
+    }
+}

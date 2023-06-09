@@ -94,7 +94,6 @@ import UIKit
      }()
 
      // MARK: - Properties
-     
      weak var delegate: TrackerFormViewControllerDelegate?
      private let type: SetTrackersViewController.TrackerType
      private let trackerCategoryStore = TrackerCategoryStore()
@@ -104,7 +103,8 @@ import UIKit
          }
      }
      
-     private lazy var category: TrackerCategory? = trackerCategoryStore.categories.randomElement() {
+     private lazy var category: TrackerCategory? = nil 
+     {
          didSet {
              checkFromValidation()
          }
@@ -173,12 +173,10 @@ import UIKit
 
          configureViews()
          configureConstraints()
-
          checkFromValidation()
      }
 
      // MARK: - Actions
-     
      @objc
      private func didChangedLabelTextField(_ sender: UITextField) {
          guard let text = sender.text else { return }
@@ -250,10 +248,8 @@ import UIKit
          
          parametersTableView.dataSource = self
          parametersTableView.delegate = self
-         
          emojisCollection.dataSource = self
          emojisCollection.delegate = self
-         
          colorsCollection.dataSource = self
          colorsCollection.delegate = self
          
@@ -355,12 +351,18 @@ import UIKit
 extension TrackerFormViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
+        case 0:
+            let SetCategoriesViewController = SetCategoriesViewController(selectedCategory: category)
+            SetCategoriesViewController.delegate = self
+            let navigationController = UINavigationController(rootViewController: SetCategoriesViewController)
+            navigationController.isModalInPresentation = true
+            present(navigationController, animated: true)
         case 1:
             guard let schedule = data.schedule else { return }
             let scheduleViewController = ScheduleViewController(selectedWeekdays: schedule)
             scheduleViewController.delegate = self
             let navigationController = UINavigationController(rootViewController: scheduleViewController)
-            present(navigationController, animated: true)
+            present(navigationController,    animated: true)
         default:
             return
         }
@@ -369,6 +371,16 @@ extension TrackerFormViewController: UITableViewDelegate {
             ListOfItems.height
         }
     }
+
+// MARK: - SetCategoriesViewControllerDelegate
+ extension TrackerFormViewController: SetCategoriesViewControllerDelegate {
+     func didConfirm(_ category: TrackerCategory) {
+         self.category = category
+         parametersTableView.reloadData()
+         dismiss(animated: true)
+     }
+ }
+
 // MARK: - ScheduleViewControllerDelegate
 extension TrackerFormViewController: ScheduleViewControllerDelegate {
     func didConfirm(_ schedule: [WeekDay]) {
@@ -386,7 +398,7 @@ extension TrackerFormViewController: UICollectionViewDataSource {
         default: return 0
         }
     }
-    
+// MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case emojisCollection:
@@ -541,7 +553,6 @@ extension TrackerFormViewController {
         }
         
         // MARK: - Methods
-        
         func configure(with label: String) {
             titleLabel.text = label
         }
