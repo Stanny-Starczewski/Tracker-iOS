@@ -25,6 +25,8 @@
 		29675B442A1D6BAC0092DC7C /* TrackerCategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B432A1D6BAC0092DC7C /* TrackerCategoryStore.swift */; };
 		29675B462A1D6BC40092DC7C /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B452A1D6BC40092DC7C /* TrackerRecordStore.swift */; };
 		29675B482A1D6D980092DC7C /* UIColorMarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B472A1D6D980092DC7C /* UIColorMarshalling.swift */; };
+		29D392122A35BCA200DF8E04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29D392142A35BCA200DF8E04 /* Localizable.strings */; };
+		29D392222A35C21000DF8E04 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 29D392242A35C21000DF8E04 /* Localizable.stringsdict */; };
 		29EF3A662A0D704800F9FFCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A652A0D704800F9FFCA /* AppDelegate.swift */; };
 		29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */; };
 		29EF3A6A2A0D704800F9FFCA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A692A0D704800F9FFCA /* TabBarViewController.swift */; };
@@ -68,6 +70,10 @@
 		29675B432A1D6BAC0092DC7C /* TrackerCategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategoryStore.swift; sourceTree = "<group>"; };
 		29675B452A1D6BC40092DC7C /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
 		29675B472A1D6D980092DC7C /* UIColorMarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorMarshalling.swift; sourceTree = "<group>"; };
+		29D392132A35BCA200DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		29D392232A35C21000DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		29D3922E2A35C44B00DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		29D392302A35C4F800DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		29EF3A622A0D704800F9FFCA /* Tracker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29EF3A652A0D704800F9FFCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +143,15 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		29D392092A35B80600DF8E04 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				29D392142A35BCA200DF8E04 /* Localizable.strings */,
+				29D392242A35C21000DF8E04 /* Localizable.stringsdict */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		29EF3A592A0D704800F9FFCA = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +171,7 @@
 		29EF3A642A0D704800F9FFCA /* Tracker-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				29D392092A35B80600DF8E04 /* Resource */,
 				29EF3A7F2A0DA38500F9FFCA /* ViewControllers */,
 				290203942A2D92BD00F217F9 /* AddCategories */,
 				29EF3A872A0FE39200F9FFCA /* UIStructs */,
@@ -275,6 +291,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 29EF3A592A0D704800F9FFCA;
 			productRefGroup = 29EF3A632A0D704800F9FFCA /* Products */;
@@ -292,6 +309,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				29EF3A722A0D704900F9FFCA /* LaunchScreen.storyboard in Resources */,
+				29D392122A35BCA200DF8E04 /* Localizable.strings in Resources */,
+				29D392222A35C21000DF8E04 /* Localizable.stringsdict in Resources */,
 				29EF3A6F2A0D704900F9FFCA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +366,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		29D392142A35BCA200DF8E04 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29D392132A35BCA200DF8E04 /* en */,
+				29D3922E2A35C44B00DF8E04 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		29D392242A35C21000DF8E04 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29D392232A35C21000DF8E04 /* en */,
+				29D392302A35C4F800DF8E04 /* ru */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		29EF3A702A0D704900F9FFCA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -362,6 +399,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -422,6 +460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
