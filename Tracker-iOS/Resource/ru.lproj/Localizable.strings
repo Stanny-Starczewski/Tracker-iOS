@@ -16,3 +16,14 @@
 "sun" = "Вс";
 
 "day" = "день";
+
+/// TrackersViewController
+"TrackersViewController.title" = "Трекеры";
+"TrackersViewController.search" = "Поиск";
+"TrackersViewController.whatWeWillTrace" = "Что будем отслеживать?";
+"TrackersViewController.filters" = "Фильтры";
+"TrackersViewController.nothingFound" = "Ничего не найдено";
+
+/// StatisticViewController
+"StatisticViewController.title" = "Статистика";
+"StatisticViewController.nothingToAnalyze" = "Анализировать пока нечего";

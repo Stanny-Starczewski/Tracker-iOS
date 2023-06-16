@@ -10,14 +10,14 @@ final class StatisticViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .ypWhiteDay
         statisticLabel.configureLabel(
-            text: "Статистика",
+            text: (NSLocalizedString("StatisticViewController.title", comment: "")),
             addToView: view,
             ofSize: 34,
             weight: .bold
         )
         configureViews()
         configureConstraints()
-        mainSpacePlaceholderStack.configurePlaceholderStack(imageName: "EmptyStat", text: "Анализировать пока нечего")
+        mainSpacePlaceholderStack.configurePlaceholderStack(imageName: "EmptyStat", text: (NSLocalizedString("StatisticViewController.nothingToAnalyze", comment: "")))
     }
 }
 // MARK: - EXTENSIONS

@@ -17,3 +17,13 @@
 
 "day" = "day";
 
+/// TrackersViewController
+"TrackersViewController.title" = "Trackers";
+"TrackersViewController.search" = "Search";
+"TrackersViewController.whatWeWillTrace" = "What will we track?";
+"TrackersViewController.filters" = "Filters";
+"TrackersViewController.nothingFound" = "Nothing found";
+
+/// StatisticViewController
+"StatisticViewController.title" = "Statistics";
+"StatisticViewController.nothingToAnalyze" = "Nothing to analyze";
