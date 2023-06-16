@@ -6,17 +6,17 @@ final class OnboardingViewController: UIPageViewController {
     private lazy var pages: [UIViewController] = {
         let firstPage = OnboardingPageViewController()
         firstPage.backgroundImage.image = UIImage(named: "OnboardingBackground_1")
-        firstPage.label.text = "Отслеживайте только то, что хотите"
+        firstPage.label.text = NSLocalizedString("OnboardingViewController.firstPage", comment: "")
         let secondPage = OnboardingPageViewController()
         secondPage.backgroundImage.image = UIImage(named: "OnboardingBackground_2")
-        secondPage.label.text = "Даже если это не литры воды и йога"
+        secondPage.label.text = NSLocalizedString("OnboardingViewController.secondPage", comment: "")
         return [firstPage, secondPage]
     }()
     
     private lazy var enterButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .ypBlackDay
-        button.setTitle("Вот это технологии!", for: .normal)
+        button.setTitle(NSLocalizedString("OnboardingViewController.enterButton", comment: ""), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.layer.cornerRadius = 16
         button.addTarget(nil, action: #selector(buttonTapped), for: .touchUpInside)

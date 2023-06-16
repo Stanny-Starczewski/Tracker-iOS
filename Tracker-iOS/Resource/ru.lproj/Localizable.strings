@@ -1,11 +1,15 @@
-
-/// TrackersViewController
+// TrackersViewController
 "TrackersViewController.title" = "Трекеры";
 "TrackersViewController.search" = "Поиск";
 "TrackersViewController.whatWeWillTrace" = "Что будем отслеживать?";
 "TrackersViewController.filters" = "Фильтры";
 "TrackersViewController.nothingFound" = "Ничего не найдено";
 
-/// StatisticViewController
+// StatisticViewController
 "StatisticViewController.title" = "Статистика";
 "StatisticViewController.nothingToAnalyze" = "Анализировать пока нечего";
+
+//OnboardingViewController
+"OnboardingViewController.firstPage" = "Отслеживайте только то, что хотите";
+"OnboardingViewController.secondPage" = "Даже если это не литры воды и йога";
+"OnboardingViewController.enterButton" = "Вот это технологии!";

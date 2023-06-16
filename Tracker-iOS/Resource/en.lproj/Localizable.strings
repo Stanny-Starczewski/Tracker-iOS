@@ -1,11 +1,15 @@
-
-/// TrackersViewController
+// TrackersViewController
 "TrackersViewController.title" = "Trackers";
 "TrackersViewController.search" = "Search";
 "TrackersViewController.whatWeWillTrace" = "What will we track?";
 "TrackersViewController.filters" = "Filters";
 "TrackersViewController.nothingFound" = "Nothing found";
 
-/// StatisticViewController
+// StatisticViewController
 "StatisticViewController.title" = "Statistics";
 "StatisticViewController.nothingToAnalyze" = "Nothing to analyze";
+
+//OnboardingViewController
+"OnboardingViewController.firstPage" = "Track only what you want";
+"OnboardingViewController.secondPage" = "Even if it's not liters of water and yoga";
+"OnboardingViewController.enterButton" = "Here is the technology!";
