@@ -34,6 +34,21 @@
 
 //ScheduleViewController
 "TrackerFormViewController.ready" = "Готово";
+"monday" = "Понедельник";
+"tuesday" = "Вторник";
+"wednesday" = "Среда";
+"thursday" = "Четверг";
+"friday" = "Пятница";
+"saturday" = "Суббота";
+"sunday" = "Воскресенье";
+
+"monday_SHORT" = "Пн";
+"tuesday_SHORT" = "Вт";
+"wednesday_SHORT" = "Ср";
+"thursday_SHORT" = "Чт";
+"friday_SHORT" = "Пт";
+"saturday_SHORT" = "Сб";
+"sunday_SHORT" = "Вс";
 
 //SetCategoriesViewController
 "SetCategoriesViewController.addButton" = "Добавить категорию";

@@ -34,6 +34,22 @@
 
 //ScheduleViewController
 "TrackerFormViewController.ready" = "Ready";
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+
+"monday_SHORT" = "Mon";
+"tuesday_SHORT" = "Tues";
+"wednesday_SHORT" = "Wed";
+"thursday_SHORT" = "Thurs";
+"friday_SHORT" = "Fri";
+"saturday_SHORT" = "Sat";
+"sunday_SHORT" = "Sun";
+
 
 //SetCategoriesViewController
 "SetCategoriesViewController.addButton" = "Add category";
