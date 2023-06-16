@@ -6,10 +6,10 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
 
  final class SetTrackersViewController: UIViewController {
      // MARK: - Layout elements
-     private lazy var  habitButton: UIButton = {
+     private lazy var habitButton: UIButton = {
          let button = UIButton()
          button.backgroundColor = .ypBlackDay
-         button.setTitle("Привычка", for: .normal)
+         button.setTitle(NSLocalizedString("SetTrackersViewController.habitButton", comment: "Habit"), for: .normal)
          button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
          button.layer.cornerRadius = 16
          button.addTarget(self, action: #selector(didTapHabitButton), for: .touchUpInside)
@@ -19,7 +19,7 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
      private lazy var  irregularEventButton: UIButton = {
          let button = UIButton()
          button.backgroundColor = .ypBlackDay
-         button.setTitle("Нерегулярное событие", for: .normal)
+         button.setTitle(NSLocalizedString("SetTrackersViewController.irregularEventButton", comment: "Irregular event"), for: .normal)
          button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
          button.layer.cornerRadius = 16
          button.addTarget(self, action: #selector(didTapIrregularEventButton), for: .touchUpInside)
@@ -47,7 +47,7 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
      }
      
      private var isValidationMessageVisible = false
-     private var parameters = ["Категория", "Расписание"]
+     private var parameters = [NSLocalizedString("SetTrackersViewController.parameter1", comment: "Category"), NSLocalizedString("SetTrackersViewController.parameter2", comment: "Schedule")]
      private let emojis = emojisArray
      private let colors = UIColor.bunchOfSChoices
      
@@ -61,13 +61,13 @@ protocol SetTrackersViewControllerDelegate: AnyObject {
      // MARK: - Actions
      @objc
      private func didTapHabitButton() {
-         title = "Новая привычка"
+         title = NSLocalizedString("SetTrackersViewController.didTapHabitButton", comment: "New habit")
          delegate?.didSelectTracker(with: .habit)
      }
      
      @objc
      private func didTapIrregularEventButton() {
-         title = "Новое нерегулярное событие"
+         title = NSLocalizedString("SetTrackersViewController.didTapIrregularEventButton", comment: "New irregular event")
          delegate?.didSelectTracker(with: .irregularEvent)
      }
  }
@@ -83,7 +83,7 @@ extension SetTrackersViewController {
 private extension SetTrackersViewController {
     // MARK: - Layout methods
     func configureViews() {
-        title = "Создание трекера"
+        title = NSLocalizedString("SetTrackersViewController.configureViews", comment: "Creating a tracker")
         view.backgroundColor = .ypWhiteDay
         view.addSubview(stackView)
         stackView.addArrangedSubview(habitButton)

@@ -32,7 +32,7 @@ final class TrackersViewController: UIViewController {
     
     private lazy var searchBar: UISearchBar = {
         let view = UISearchBar()
-        view.placeholder = NSLocalizedString("TrackersViewController.search", comment: "Плейсхолдер в строке поиска")
+        view.placeholder = NSLocalizedString("TrackersViewController.search", comment: "")
         view.searchBarStyle = .minimal
         view.tintColor = .ypBlue
         view.delegate = self
@@ -87,12 +87,12 @@ final class TrackersViewController: UIViewController {
         configureViews()
         configureConstraints()
         trackerLabel.configureLabel(
-            text: NSLocalizedString("TrackersViewController.title", comment: "Заголовок экрана"),
+            text: NSLocalizedString("TrackersViewController.title", comment: ""),
             addToView: view,
             ofSize: 34,
             weight: .bold
         )
-        mainSpacePlaceholderStack.configurePlaceholderStack(imageName: "StarIcon", text: NSLocalizedString("TrackersViewController.whatWeWillTrace", comment: "Надпись посередине экрана"))
+        mainSpacePlaceholderStack.configurePlaceholderStack(imageName: "StarIcon", text: NSLocalizedString("TrackersViewController.whatWeWillTrace", comment: ""))
         searchSpacePlaceholderStack.configurePlaceholderStack(imageName: "EmptyTracker", text: NSLocalizedString("TrackersViewController.nothingFound", comment: ""))
         checkMainPlaceholderVisability()
         checkPlaceholderVisabilityAfterSearch()

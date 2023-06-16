@@ -7,7 +7,7 @@ import UIKit
  final class CategoryFormViewController: UIViewController {
      // MARK: - Layout elements
      private lazy var textField: UITextField = {
-         let textField = TextField(placeholder: "Введите название категории")
+         let textField = TextField(placeholder: NSLocalizedString("CategoryFormViewController.textField", comment: "Enter"))
          textField.addTarget(self, action: #selector(didChangedTextField), for: .editingChanged)
          return textField
      }()
@@ -16,7 +16,7 @@ import UIKit
          let button = UIButton()
          button.backgroundColor = .ypGray
          button.setTitleColor(.ypWhiteDay, for: .normal)
-         button.setTitle("Готово", for: .normal)
+         button.setTitle(NSLocalizedString("TrackerFormViewController.ready", comment: "Ready"), for: .normal)
          button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
          button.layer.cornerRadius = 16
          button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
@@ -71,7 +71,7 @@ import UIKit
  // MARK: - Layout methods
  private extension CategoryFormViewController {
      func configureView() {
-         title = "Новая категория"
+         title = NSLocalizedString("CategoryFormViewController.configureView", comment: "New")
          view.backgroundColor = .ypWhiteDay
          [textField, readyButton].forEach { view.addSubview($0) }
          
