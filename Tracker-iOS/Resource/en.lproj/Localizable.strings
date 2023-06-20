@@ -4,6 +4,8 @@
 "TrackersViewController.whatWeWillTrace" = "What will we track?";
 "TrackersViewController.filters" = "Filters";
 "TrackersViewController.nothingFound" = "Nothing found";
+"TrackersViewController.deleteTracker" = "Are you sure to delete the tracker?";
+"TrackersViewController.pin" = "Pin";
 
 // StatisticViewController
 "StatisticViewController.title" = "Statistics";
@@ -31,6 +33,7 @@
 "TrackerFormViewController.scheduleString" = "Every day";
 "TrackerFormViewController.emoji" = "Emoji";
 "TrackerFormViewController.color" = "Color";
+"TrackerFormViewController.editHabit" = "Edit habit";
 
 //ScheduleViewController
 "TrackerFormViewController.ready" = "Ready";

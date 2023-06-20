@@ -2,7 +2,8 @@ import UIKit
 
  protocol TrackerFormViewControllerDelegate: AnyObject {
      func didTapCancelButton()
-     func didTapConfirmButton(category: TrackerCategory, trackerToAdd: Tracker)
+     func didAddTracker(category: TrackerCategory, trackerToAdd: Tracker)
+     func didUpdateTracker(with data: Tracker.Data)
  }
 
  final class TrackerFormViewController: UIViewController {
@@ -95,16 +96,10 @@ import UIKit
 
      // MARK: - Properties
      weak var delegate: TrackerFormViewControllerDelegate?
-     private let type: SetTrackersViewController.TrackerType
+     private let setAction: ActionType
+     private let trackerType: SetTrackersViewController.TrackerType
      private let trackerCategoryStore = TrackerCategoryStore()
      private var data: Tracker.Data {
-         didSet {
-             checkFromValidation()
-         }
-     }
-     
-     private lazy var category: TrackerCategory? = nil 
-     {
          didSet {
              checkFromValidation()
          }
@@ -150,15 +145,14 @@ import UIKit
      private let params = UICollectionView.GeometricParams(cellCount: 6, leftInset: 28, rightInset: 28, topInset: 24, bottomInset: 24, height: 52, cellSpacing: 5)
 
      // MARK: - Lifecycle
-     init(type: SetTrackersViewController.TrackerType, data: Tracker.Data = Tracker.Data()) {
-         self.type = type
-         self.data = data
-         switch type {
-         case .habit:
-             self.data.schedule = []
-         case .irregularEvent:
-             self.data.schedule = nil
-         }
+     init(
+        ActionType: TrackerFormViewController.ActionType,
+        trackerType: SetTrackersViewController.TrackerType,
+        data: Tracker.Data?
+     ) {
+         self.setAction = ActionType
+         self.trackerType = trackerType
+         self.data = data ?? Tracker.Data()
          super.init(nibName: nil, bundle: nil)
      }
 
@@ -170,7 +164,7 @@ import UIKit
 
      override func viewDidLoad() {
          super.viewDidLoad()
-
+         setFormFields()
          configureViews()
          configureConstraints()
          checkFromValidation()
@@ -195,16 +189,10 @@ import UIKit
 
      @objc
      private func didTapConfirmButton() {
-         guard let category, let emoji = data.emoji, let color = data.color else { return }
-
-         let newTracker = Tracker(
-             label: data.label,
-             emoji: emoji,
-             color: color,
-             completedDaysCount: 0,
-             schedule: data.schedule
-         )
-         delegate?.didTapConfirmButton(category: category, trackerToAdd: newTracker)
+         switch setAction {
+         case .add: addTracker()
+         case .edit: editTracker()
+         }
      }
 
      // MARK: - Methods
@@ -217,7 +205,7 @@ import UIKit
              isConfirmButtonEnabled = false
              return
          }
-         if category == nil || data.emoji == nil || data.color == nil {
+         if data.category == nil || data.emoji == nil || data.color == nil {
              isConfirmButtonEnabled = false
              return
          }
@@ -236,14 +224,51 @@ import UIKit
          button.layer.masksToBounds = true
          return button
      }
+     
+     private func setFormFields() {
+         textField.text = data.label
+         switch trackerType {
+         case .habit:
+             self.data.schedule = data.schedule ?? []
+         case .irregularEvent:
+             self.data.schedule = nil
+         }
+     }
+     
+     private func addTracker() {
+         guard
+            let emoji = data.emoji,
+            let color = data.color,
+            let category = data.category
+         else { return }
+         
+         let newTracker = Tracker(
+            label: data.label,
+            emoji: emoji,
+            color: color,
+            category: category,
+            completedDaysCount: 0,
+            schedule: data.schedule
+         )
+         delegate?.didAddTracker(category: category, trackerToAdd: newTracker)
+     }
+     
+     private func editTracker() {
+         delegate?.didUpdateTracker(with: data)
+     }
  }
 // MARK: - EXTENSIONS
  // MARK: - Layout methods
  private extension TrackerFormViewController {
      func configureViews() {
-         switch type {
-         case .habit: title = NSLocalizedString("SetTrackersViewController.didTapHabitButton", comment: "New habit")
-         case .irregularEvent: title = NSLocalizedString("SetTrackersViewController.didTapIrregularEventButton", comment: "New irregular event")
+         switch setAction {
+         case .add:
+             switch trackerType {
+             case .habit: title = NSLocalizedString("SetTrackersViewController.didTapHabitButton", comment: "New habit")
+             case .irregularEvent: title = NSLocalizedString("SetTrackersViewController.didTapIrregularEventButton", comment: "New irregular event")
+             }
+         case .edit: title =
+             NSLocalizedString("TrackerFormViewController.editHabit", comment: "Edit habit")
          }
          
          parametersTableView.dataSource = self
@@ -336,10 +361,10 @@ import UIKit
 
          if data.schedule == nil {
              position = .alone
-             value = category?.label
+             value = data.category?.label
          } else {
              position = indexPath.row == 0 ? .first : .last
-             value = indexPath.row == 0 ? category?.label : scheduleString
+             value = indexPath.row == 0 ? data.category?.label : scheduleString
          }
 
          listCell.configure(label: parameters[indexPath.row], value: value, position: position)
@@ -352,7 +377,7 @@ extension TrackerFormViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let SetCategoriesViewController = SetCategoriesViewController(selectedCategory: category)
+            let SetCategoriesViewController = SetCategoriesViewController(selectedCategory: data.category)
             SetCategoriesViewController.delegate = self
             let navigationController = UINavigationController(rootViewController: SetCategoriesViewController)
             navigationController.isModalInPresentation = true
@@ -362,20 +387,20 @@ extension TrackerFormViewController: UITableViewDelegate {
             let scheduleViewController = ScheduleViewController(selectedWeekdays: schedule)
             scheduleViewController.delegate = self
             let navigationController = UINavigationController(rootViewController: scheduleViewController)
-            present(navigationController,    animated: true)
+            present(navigationController, animated: true)
         default:
             return
         }
     }
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            ListOfItems.height
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        ListOfItems.height
     }
+}
 
 // MARK: - SetCategoriesViewControllerDelegate
  extension TrackerFormViewController: SetCategoriesViewControllerDelegate {
      func didConfirm(_ category: TrackerCategory) {
-         self.category = category
+         data.category = category
          parametersTableView.reloadData()
          dismiss(animated: true)
      }
@@ -398,18 +423,37 @@ extension TrackerFormViewController: UICollectionViewDataSource {
         default: return 0
         }
     }
-// MARK: - UICollectionViewDelegate
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case emojisCollection:
             guard let emojiCell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojiCell.identifier, for: indexPath) as? EmojiCell else { return UICollectionViewCell() }
             let emoji = emojis[indexPath.row]
             emojiCell.configure(with: emoji)
+            if emoji == data.emoji {
+                emojiCell.select()
+                emojisCollection.selectItem(
+                     at: indexPath,
+                     animated: false,
+                     scrollPosition: .bottom
+                 )
+            }
             return emojiCell
         case colorsCollection:
             guard let colorCell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as? ColorCell else { return UICollectionViewCell() }
             let color = colors[indexPath.row]
             colorCell.configure(with: color!)
+            if
+                let dataColor = data.color,
+                UIColorMarshalling.serialize(color: color ?? .ypRed) == UIColorMarshalling.serialize(color: dataColor)
+            {
+                colorCell.select()
+                colorsCollection.selectItem(
+                    at: indexPath,
+                    animated: false,
+                    scrollPosition: .bottom
+                )
+            }
             return colorCell
         default:
             return UICollectionViewCell()
@@ -417,6 +461,7 @@ extension TrackerFormViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension TrackerFormViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? SelectionCellProtocol else { return }
@@ -565,6 +610,13 @@ extension TrackerFormViewController: UITextFieldDelegate {
         return true
     }
 }
+
+extension TrackerFormViewController {
+    enum ActionType {
+        case add, edit
+    }
+}
+
 // //MARK: - SHOW PREVIEW
 //
 //import SwiftUI

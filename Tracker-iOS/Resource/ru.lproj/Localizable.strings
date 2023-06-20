@@ -4,6 +4,8 @@
 "TrackersViewController.whatWeWillTrace" = "Что будем отслеживать?";
 "TrackersViewController.filters" = "Фильтры";
 "TrackersViewController.nothingFound" = "Ничего не найдено";
+"TrackersViewController.deleteTracker" = "Уверены что хотите удалить трекер?";
+"TrackersViewController.pin" = "Закрепить";
 
 // StatisticViewController
 "StatisticViewController.title" = "Статистика";
@@ -31,6 +33,7 @@
 "TrackerFormViewController.scheduleString" = "Каждый день";
 "TrackerFormViewController.emoji" = "Эмоджи";
 "TrackerFormViewController.color" = "Цвет";
+"TrackerFormViewController.editHabit" = "Редактирование привычки";
 
 //ScheduleViewController
 "TrackerFormViewController.ready" = "Готово";

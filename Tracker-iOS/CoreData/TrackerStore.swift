@@ -12,6 +12,8 @@ protocol TrackerStoreProtocol {
     func headerLabelInSection(_ section: Int) -> String?
     func tracker(at indexPath: IndexPath) -> Tracker?
     func addTracker(_ tracker: Tracker, with category: TrackerCategory) throws
+    func updateTracker(_ tracker: Tracker, with data: Tracker.Data) throws
+    func deleteTracker(_ tracker: Tracker) throws
 }
 
 final class TrackerStore: NSObject {
@@ -25,7 +27,7 @@ final class TrackerStore: NSObject {
     private lazy var fetchedResultsController: NSFetchedResultsController<TrackerCD> = {
         let fetchRequest = NSFetchRequest<TrackerCD>(entityName: "TrackerCD")
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \TrackerCD.category?.categoryId, ascending: true),
+            NSSortDescriptor(keyPath: \TrackerCD.category?.createdAt, ascending: true),
             NSSortDescriptor(keyPath: \TrackerCD.createdAt, ascending: true)
         ]
         let fetchedResultsController = NSFetchedResultsController(
@@ -58,6 +60,8 @@ final class TrackerStore: NSObject {
             let label = coreData.label,
             let emoji = coreData.emoji,
             let colorHEX = coreData.colorHEX,
+            let categoryCD = coreData.category,
+            let category = try? trackerCategoryStore.makeCategory(from: categoryCD),
             let completedDaysCount = coreData.records
         else { throw StoreError.decodeError }
         let color = UIColorMarshalling.deserialize(hexString: colorHEX)
@@ -68,6 +72,7 @@ final class TrackerStore: NSObject {
             label: label,
             emoji: emoji,
             color: color!,
+            category: category,
             completedDaysCount: completedDaysCount.count,
             schedule: schedule
         )
@@ -79,7 +84,10 @@ final class TrackerStore: NSObject {
             #keyPath(TrackerCD.trackerId), id.uuidString
         )
         try fetchedResultsController.performFetch()
-        return fetchedResultsController.fetchedObjects?.first
+        guard let tracker = fetchedResultsController.fetchedObjects?.first else { throw StoreError.fetchTrackerError }
+        fetchedResultsController.fetchRequest.predicate = nil
+        try fetchedResultsController.performFetch()
+        return tracker
     }
     
     func loadFilteredTrackers(date: Date, searchString: String) throws {
@@ -122,7 +130,7 @@ final class TrackerStore: NSObject {
 // MARK: - EXTENSIONS
 extension TrackerStore {
     enum StoreError: Error {
-        case decodeError
+        case decodeError, fetchTrackerError, deleteError
     }
 }
 
@@ -165,6 +173,30 @@ extension TrackerStore: TrackerStoreProtocol {
         trackerCD.colorHEX = UIColorMarshalling.serialize(color: tracker.color)
         trackerCD.schedule = WeekDay.code(tracker.schedule)
         trackerCD.category = categoryCD
+        try context.save()
+    }
+    
+    func updateTracker(_ tracker: Tracker, with data: Tracker.Data) throws {
+        guard
+            let emoji = data.emoji,
+            let color = data.color,
+            let category = data.category
+        else { return }
+        
+        let trackerCD = try getTrackerCD(by: tracker.id)
+        let categoryCD = try trackerCategoryStore.categoryCD(with: category.id)
+        trackerCD?.label = data.label
+        trackerCD?.emoji = emoji
+        trackerCD?.colorHEX = UIColorMarshalling.serialize(color: color)
+        trackerCD?.schedule = WeekDay.code(data.schedule)
+        trackerCD?.category = categoryCD
+        try context.save()
+    }
+    
+    
+    func deleteTracker(_ tracker: Tracker) throws {
+        guard let trackerToDelete = try getTrackerCD(by: tracker.id) else { throw StoreError.deleteError }
+        context.delete(trackerToDelete)
         try context.save()
     }
 }
