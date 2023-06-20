@@ -7,9 +7,11 @@ final class OnboardingViewController: UIPageViewController {
         let firstPage = OnboardingPageViewController()
         firstPage.backgroundImage.image = UIImage(named: "OnboardingBackground_1")
         firstPage.label.text = NSLocalizedString("OnboardingViewController.firstPage", comment: "")
+        firstPage.label.textColor = .ypBlackDay
         let secondPage = OnboardingPageViewController()
         secondPage.backgroundImage.image = UIImage(named: "OnboardingBackground_2")
         secondPage.label.text = NSLocalizedString("OnboardingViewController.secondPage", comment: "")
+        secondPage.label.textColor = .ypBlackDay
         return [firstPage, secondPage]
     }()
     

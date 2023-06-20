@@ -50,7 +50,6 @@
 "saturday_SHORT" = "Sat";
 "sunday_SHORT" = "Sun";
 
-
 //SetCategoriesViewController
 "SetCategoriesViewController.addButton" = "Add category";
 "SetCategoriesViewController.starCombined" = "habits and events can be \n united in meaning";
