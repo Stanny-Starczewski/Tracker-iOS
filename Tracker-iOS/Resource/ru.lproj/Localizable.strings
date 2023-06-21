@@ -6,6 +6,7 @@
 "TrackersViewController.nothingFound" = "Ничего не найдено";
 "TrackersViewController.deleteTracker" = "Уверены что хотите удалить трекер?";
 "TrackersViewController.pin" = "Закрепить";
+"TrackersViewController.unPin" = "Открепить";
 
 // StatisticViewController
 "StatisticViewController.title" = "Статистика";
@@ -63,3 +64,6 @@
 //CategoryFormViewController
 "CategoryFormViewController.textField" = "Введите название категории";
 "CategoryFormViewController.configureView" = "Новая категория";
+
+//TrackerStore
+"TrackerStore.pin" = "Закрепленные";

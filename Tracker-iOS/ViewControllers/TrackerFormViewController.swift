@@ -247,6 +247,7 @@ import UIKit
             emoji: emoji,
             color: color,
             category: category,
+            isPinned: false,
             completedDaysCount: 0,
             schedule: data.schedule
          )

@@ -224,8 +224,8 @@ extension TrackersViewController: UIContextMenuInteractionDelegate {
         
         return UIContextMenuConfiguration(actionProvider:  { actions in
             UIMenu(children: [
-                UIAction(title: NSLocalizedString("TrackersViewController.pin", comment: "Pin")) { _ in
-  
+                UIAction(title: tracker.isPinned ?  NSLocalizedString("TrackersViewController.unPin", comment: "Unpin") : NSLocalizedString("TrackersViewController.pin", comment: "Pin")) { [weak self] _ in
+                    try? self?.trackerStore.togglePin(for: tracker)
                 },
                 UIAction(title: NSLocalizedString("SetCategoriesViewController.edit", comment: "Edit")) { [weak self] _ in
                     let type: SetTrackersViewController.TrackerType = tracker.schedule != nil ? .habit : .irregularEvent

@@ -6,16 +6,18 @@ struct Tracker: Identifiable {
     let emoji: String
     let color: UIColor
     let category: TrackerCategory
+    let isPinned: Bool
     let completedDaysCount: Int
     let schedule: [WeekDay]?
 
-    init(id: UUID = UUID(), label: String, emoji: String, color: UIColor, category: TrackerCategory, completedDaysCount: Int, schedule: [WeekDay]?) {
+    init(id: UUID = UUID(), label: String, emoji: String, color: UIColor, category: TrackerCategory, isPinned: Bool, completedDaysCount: Int, schedule: [WeekDay]?) {
          self.id = id
          self.label = label
          self.emoji = emoji
          self.color = color
          self.category = category
          self.completedDaysCount = completedDaysCount
+         self.isPinned = isPinned
          self.schedule = schedule
      }
     
@@ -26,6 +28,7 @@ struct Tracker: Identifiable {
         self.color = tracker.color
         self.category = tracker.category
         self.completedDaysCount = tracker.completedDaysCount
+        self.isPinned = tracker.isPinned
         self.schedule = tracker.schedule
     }
     
@@ -38,6 +41,7 @@ struct Tracker: Identifiable {
         self.color = color
         self.category = category
         self.completedDaysCount = data.completedDaysCount
+        self.isPinned = data.isPinned
         self.schedule = data.schedule
     }
     
@@ -53,6 +57,7 @@ extension Tracker {
         var color: UIColor? = nil
         var category: TrackerCategory? = nil
         var completedDaysCount: Int = 0
+        var isPinned: Bool = false
         var schedule: [WeekDay]? = nil
     }
 }
