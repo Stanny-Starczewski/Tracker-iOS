@@ -28,6 +28,7 @@
 		29D392122A35BCA200DF8E04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29D392142A35BCA200DF8E04 /* Localizable.strings */; };
 		29D392222A35C21000DF8E04 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 29D392242A35C21000DF8E04 /* Localizable.stringsdict */; };
 		29D392422A3AB5F200DF8E04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29D392442A3AB5F200DF8E04 /* InfoPlist.strings */; };
+		29D551512A435D340021A617 /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D551502A435D340021A617 /* StatisticViewModel.swift */; };
 		29EF3A662A0D704800F9FFCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A652A0D704800F9FFCA /* AppDelegate.swift */; };
 		29EF3A682A0D704800F9FFCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */; };
 		29EF3A6A2A0D704800F9FFCA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A692A0D704800F9FFCA /* TabBarViewController.swift */; };
@@ -77,6 +78,7 @@
 		29D392302A35C4F800DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		29D392432A3AB5F200DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		29D392452A3AB5F500DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		29D551502A435D340021A617 /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		29EF3A622A0D704800F9FFCA /* Tracker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29EF3A652A0D704800F9FFCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29EF3A672A0D704800F9FFCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				290203992A2DA0F500F217F9 /* CategoriesViewModel.swift */,
+				29D551502A435D340021A617 /* StatisticViewModel.swift */,
 			);
 			path = AddCategories;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				29675B3A2A1B19200092DC7C /* Model.xcdatamodeld in Sources */,
 				295605382A108F48008F0983 /* Date Int+Extension.swift in Sources */,
 				295605362A108A76008F0983 /* UIStackView+Extension.swift in Sources */,
+				29D551512A435D340021A617 /* StatisticViewModel.swift in Sources */,
 				2902039A2A2DA0F500F217F9 /* CategoriesViewModel.swift in Sources */,
 				29EF3A862A0E9A3200F9FFCA /* SetTrackersViewController.swift in Sources */,
 				2925C4082A11A4F20040332B /* WeekdayCell.swift in Sources */,

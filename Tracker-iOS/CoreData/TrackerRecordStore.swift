@@ -61,6 +61,13 @@ final class TrackerRecordStore: NSObject {
         delegate?.didUpdateRecords(completedTrackers)
     }
     
+    func loadCompletedTrackers() throws -> [TrackerRecord] {
+        let request = NSFetchRequest<TrackerRecordCD>(entityName: "TrackerRecordCD")
+        let recordsCoreData = try context.fetch(request)
+        let records = try recordsCoreData.map { try makeTrackerRecord(from: $0) }
+        return records
+    }
+    
     private func makeTrackerRecord(from coreData: TrackerRecordCD) throws -> TrackerRecord {
         guard
             let idString = coreData.recordId,

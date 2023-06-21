@@ -67,3 +67,6 @@
 
 //TrackerStore
 "TrackerStore.pin" = "Закрепленные";
+
+//StatisticViewController
+"StatisticViewController.finishedTrackers" = "Трекеров завершено";

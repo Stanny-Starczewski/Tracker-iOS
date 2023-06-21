@@ -67,3 +67,6 @@
 
 //TrackerStore
 "TrackerStore.pin" = "Pinned";
+
+//StatisticViewController
+"StatisticViewController.finishedTrackers" = "Finished trackers";
