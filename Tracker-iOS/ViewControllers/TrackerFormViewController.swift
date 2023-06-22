@@ -34,7 +34,7 @@ import UIKit
          let button = makeButton()
          button.setTitle(NSLocalizedString("TrackerFormViewController.cancel", comment: "Cancel"), for: .normal)
          button.setTitleColor(.ypRed, for: .normal)
-         button.backgroundColor = .white
+         button.backgroundColor = .ypWhiteDay
          button.layer.borderWidth = 1
          button.layer.borderColor = UIColor.ypRed.cgColor
          button.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
@@ -44,7 +44,7 @@ import UIKit
      private lazy var confirmButton: UIButton = {
          let button = makeButton()
          button.setTitle(NSLocalizedString("TrackerFormViewController.confirmButton", comment: "Create"), for: .normal)
-         button.setTitleColor(.ypWhiteDay, for: .normal)
+         button.setTitleColor(.ypBlackNight, for: .normal)
          button.backgroundColor = .ypGray
          button.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
          button.isEnabled = false
