@@ -25,6 +25,7 @@
 		29675B442A1D6BAC0092DC7C /* TrackerCategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B432A1D6BAC0092DC7C /* TrackerCategoryStore.swift */; };
 		29675B462A1D6BC40092DC7C /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B452A1D6BC40092DC7C /* TrackerRecordStore.swift */; };
 		29675B482A1D6D980092DC7C /* UIColorMarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29675B472A1D6D980092DC7C /* UIColorMarshalling.swift */; };
+		29CDB0192A443C5D00DE868E /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CDB0182A443C5D00DE868E /* AnalyticsService.swift */; };
 		29D392122A35BCA200DF8E04 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29D392142A35BCA200DF8E04 /* Localizable.strings */; };
 		29D392222A35C21000DF8E04 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 29D392242A35C21000DF8E04 /* Localizable.stringsdict */; };
 		29D392422A3AB5F200DF8E04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29D392442A3AB5F200DF8E04 /* InfoPlist.strings */; };
@@ -72,6 +73,7 @@
 		29675B432A1D6BAC0092DC7C /* TrackerCategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategoryStore.swift; sourceTree = "<group>"; };
 		29675B452A1D6BC40092DC7C /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
 		29675B472A1D6D980092DC7C /* UIColorMarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorMarshalling.swift; sourceTree = "<group>"; };
+		29CDB0182A443C5D00DE868E /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		29D392132A35BCA200DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29D392232A35C21000DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		29D3922E2A35C44B00DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				29EF3A6E2A0D704900F9FFCA /* Assets.xcassets */,
 				29EF3A702A0D704900F9FFCA /* LaunchScreen.storyboard */,
 				29EF3A832A0DBA1800F9FFCA /* ShowPreviewUI.swift */,
+				29CDB0182A443C5D00DE868E /* AnalyticsService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				29EF3A7E2A0DA18000F9FFCA /* StatisticViewController.swift in Sources */,
 				29EF3A7A2A0D9F1F00F9FFCA /* Colors+Extension.swift in Sources */,
 				29EF3A9F2A1007D000F9FFCA /* TrackerCategoryNames.swift in Sources */,
+				29CDB0192A443C5D00DE868E /* AnalyticsService.swift in Sources */,
 				290203982A2D937600F217F9 /* CategoryCell.swift in Sources */,
 				29675B402A1C78590092DC7C /* ColorCell.swift in Sources */,
 				2925C4042A11904F0040332B /* TrackerTextField.swift in Sources */,
