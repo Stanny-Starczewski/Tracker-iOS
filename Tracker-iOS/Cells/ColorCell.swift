@@ -1,7 +1,7 @@
 import UIKit
 
 final class ColorCell: UICollectionViewCell {
-    // MARK: - Layout elements
+    // MARK: - UI Lazy properties
     private let colorView: UIView = {
         let view = UIView()
         view.layer.masksToBounds = true
@@ -16,7 +16,6 @@ final class ColorCell: UICollectionViewCell {
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configureViews()
         configureConstraints()
     }

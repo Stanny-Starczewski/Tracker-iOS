@@ -174,7 +174,6 @@ extension StatisticView {
             nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
         ])
     }
-    
 }
 
 // MARK: - SHOW PREVIEW

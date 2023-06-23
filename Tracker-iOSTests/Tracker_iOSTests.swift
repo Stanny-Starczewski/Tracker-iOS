@@ -17,7 +17,6 @@ final class TrackerTests: XCTestCase {
 extension TrackerTests {
     private struct StubTrackerStore: TrackerStoreProtocol {
         var delegate: TrackerStoreDelegate?
-        
         var numberOfTrackers: Int = 3
         var numberOfSections: Int = 2
         

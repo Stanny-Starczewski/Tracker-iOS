@@ -7,7 +7,7 @@ import UIKit
  }
 
  final class TrackerFormViewController: UIViewController {
-     // MARK: - Layout elements
+     // MARK: - UI Lazy properties
      private lazy var textField: UITextField = {
          let textField = TextField(placeholder: NSLocalizedString("TrackerFormViewController.textField", comment: "Enter tracker name"))
          textField.addTarget(self, action: #selector(didChangedLabelTextField), for: .editingChanged)
@@ -278,7 +278,6 @@ import UIKit
          emojisCollection.delegate = self
          colorsCollection.dataSource = self
          colorsCollection.delegate = self
-         
          textField.delegate = self
 
          view.backgroundColor = .ypWhiteDay
@@ -286,7 +285,6 @@ import UIKit
          view.addSubview(scrollView)
          scrollView.addSubview(contentView)
          [textField, validationMessage, parametersTableView, emojisCollection, colorsCollection, buttonsStack].forEach { contentView.addSubview($0) }
-         
          buttonsStack.addArrangedSubview(cancelButton)
          buttonsStack.addArrangedSubview(confirmButton)
          

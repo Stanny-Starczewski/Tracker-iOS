@@ -1,7 +1,7 @@
 import UIKit
 
 final class ListOfItems: UIView {
-    // MARK: - Layout elements
+    // MARK: - UI Lazy properties
     private let border: UIView = {
         let view = UIView()
         view.backgroundColor = .ypGray

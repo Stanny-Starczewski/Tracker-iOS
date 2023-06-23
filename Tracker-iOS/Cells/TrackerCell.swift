@@ -6,7 +6,7 @@ protocol TrackerCellDelegate: AnyObject {
 
 final class TrackerCell: UICollectionViewCell {
     
-    // MARK: - Layout elements
+    // MARK: - UI propertiess
     private let cardView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
@@ -67,7 +67,6 @@ final class TrackerCell: UICollectionViewCell {
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configureViews()
         configureConstraints()
     }

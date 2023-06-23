@@ -1,7 +1,7 @@
 import UIKit
 
 final class CategoryCell: UITableViewCell {
-    // MARK: - Layout elements
+    // MARK: - UI Lazy properties
     private lazy var listOfItem = ListOfItems()
     
     private let label: UILabel = {
@@ -25,7 +25,6 @@ final class CategoryCell: UITableViewCell {
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         configureViews()
         configureConstraints()
     }
@@ -47,7 +46,6 @@ private extension CategoryCell {
     func configureViews() {
         selectionStyle = .none
         [listOfItem, label, checkmarkImage].forEach { contentView.addSubview($0) }
-        
         listOfItem.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         checkmarkImage.translatesAutoresizingMaskIntoConstraints = false

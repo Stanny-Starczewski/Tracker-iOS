@@ -94,7 +94,7 @@ extension UIView {
              $0.name == UIView.kLayerNameGradientBorder
          }
          if borderLayers?.count ?? 0 > 1 {
-             fatalError()
+             assertionFailure()
          }
          return borderLayers?.first as? CAGradientLayer
      }

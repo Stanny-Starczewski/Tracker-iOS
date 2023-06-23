@@ -5,7 +5,7 @@ import UIKit
  }
 
  final class CategoryFormViewController: UIViewController {
-     // MARK: - Layout elements
+     // MARK: - UI Lazy properties
      private lazy var textField: UITextField = {
          let textField = TextField(placeholder: NSLocalizedString("CategoryFormViewController.textField", comment: "Enter"))
          textField.addTarget(self, action: #selector(didChangedTextField), for: .editingChanged)

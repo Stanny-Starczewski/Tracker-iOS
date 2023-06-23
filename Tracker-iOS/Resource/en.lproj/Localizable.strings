@@ -37,7 +37,7 @@
 "TrackerFormViewController.editHabit" = "Edit habit";
 
 //ScheduleViewController
-"TrackerFormViewController.ready" = "Ready";
+"TrackerFormViewController.ready" = "Done";
 "monday" = "Monday";
 "tuesday" = "Tuesday";
 "wednesday" = "Wednesday";

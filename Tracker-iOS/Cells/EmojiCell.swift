@@ -1,7 +1,7 @@
 import UIKit
 
 final class EmojiCell: UICollectionViewCell {
-    // MARK: - Layout elements
+    // MARK: - UI Lazy properties
     private let emojiLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32)

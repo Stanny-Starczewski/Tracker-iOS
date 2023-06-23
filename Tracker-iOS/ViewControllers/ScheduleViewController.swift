@@ -6,7 +6,7 @@ protocol ScheduleViewControllerDelegate: AnyObject {
 
 final class ScheduleViewController: UIViewController {
     
-    // MARK: - Layout elements
+    // MARK: - UI Lazy properties
     private let weekdaysTableView: UITableView = {
         let table = UITableView()
         table.register(WeekdayCell.self, forCellReuseIdentifier: WeekdayCell.identifier)
@@ -14,6 +14,7 @@ final class ScheduleViewController: UIViewController {
         table.isScrollEnabled = false
         return table
     }()
+    
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .ypBlackDay
@@ -41,7 +42,6 @@ final class ScheduleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureViews()
         configureConstraints()
     }

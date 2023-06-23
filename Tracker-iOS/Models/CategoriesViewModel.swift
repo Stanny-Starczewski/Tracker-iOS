@@ -6,12 +6,9 @@ protocol CategoriesViewModelDelegate: AnyObject {
 }
 
 final class CategoriesViewModel {
-    // MARK: - Public properties
+    // MARK: - Properties
     weak var delegate: CategoriesViewModelDelegate?
-    
-    // MARK: - Private properties
     private let trackerCategoryStore = TrackerCategoryStore()
-    
     private(set) var categories: [TrackerCategory] = [] {
         didSet {
             delegate?.didUpdateCategories()
@@ -31,7 +28,7 @@ final class CategoriesViewModel {
         trackerCategoryStore.delegate = self
     }
     
-    // MARK: - Public
+    // MARK: - Methods
     func loadCategories() {
         categories = getCategoriesFromStore()
     }
@@ -58,7 +55,6 @@ final class CategoriesViewModel {
         } catch {}
     }
     
-    // MARK: - Private
     private func getCategoriesFromStore() -> [TrackerCategory] {
         do {
             let categories = try trackerCategoryStore.categoriesCoreData.map {
