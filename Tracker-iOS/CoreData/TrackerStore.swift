@@ -8,6 +8,7 @@ protocol TrackerStoreDelegate: AnyObject {
 protocol TrackerStoreProtocol {
     var numberOfTrackers: Int { get }
     var numberOfSections: Int { get }
+    var delegate: TrackerStoreDelegate? { get set}
     func numberOfRowsInSection(_ section: Int) -> Int
     func headerLabelInSection(_ section: Int) -> String?
     func tracker(at indexPath: IndexPath) -> Tracker?
@@ -15,16 +16,15 @@ protocol TrackerStoreProtocol {
     func updateTracker(_ tracker: Tracker, with data: Tracker.Data) throws
     func deleteTracker(_ tracker: Tracker) throws
     func togglePin(for tracker: Tracker) throws
+    func loadFilteredTrackers(date: Date, searchString: String) throws
 }
 
 final class TrackerStore: NSObject {
     
     // MARK: - Properties
     weak var delegate: TrackerStoreDelegate?
-    
     private let context: NSManagedObjectContext
     private let trackerCategoryStore = TrackerCategoryStore()
-    
     private lazy var fetchedResultsController: NSFetchedResultsController<TrackerCD> = {
         let fetchRequest = NSFetchRequest<TrackerCD>(entityName: "TrackerCD")
         fetchRequest.sortDescriptors = [

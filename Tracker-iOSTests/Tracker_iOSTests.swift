@@ -1,35 +1,88 @@
-//
-//  Tracker_iOSTests.swift
-//  Tracker-iOSTests
-//
-//  Created by Gennadii Kulikov on 22.06.2023.
-//
-
 import XCTest
+import SnapshotTesting
+@testable import Tracker_iOS
 
-final class Tracker_iOSTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+final class TrackerTests: XCTestCase {
+    func testTrackersViewControllerSnapshot() throws {
+        let vc = TrackersViewController(trackerStore: StubTrackerStore())
+        assertSnapshot(matching: vc, as: .image(traits: .init(userInterfaceStyle: .light)))
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testTrackersViewControllerDarkSnapshot() throws {
+        let vc = TrackersViewController(trackerStore: StubTrackerStore())
+        assertSnapshot(matching: vc, as: .image(traits: .init(userInterfaceStyle: .dark)))
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
+
+extension TrackerTests {
+    private struct StubTrackerStore: TrackerStoreProtocol {
+        var delegate: TrackerStoreDelegate?
+        
+        var numberOfTrackers: Int = 3
+        var numberOfSections: Int = 2
+        
+        private static let category = TrackerCategory(label: "Самочувствие")
+        private static let trackers: [[Tracker]] = [
+            [
+                Tracker(
+                    label: "Хорошее настроение",
+                    emoji: "🙂",
+                    color: .bunchOfSChoices[16]!,
+                    category: category,
+                    isPinned: true,
+                    completedDaysCount: 5,
+                    schedule: [.saturday]
+                )
+            ],
+            [
+                Tracker(
+                    label: "Легкая тревожность",
+                    emoji: "🤔",
+                    color: .bunchOfSChoices[14]!,
+                    category: category,
+                    isPinned: false,
+                    completedDaysCount: 1,
+                    schedule: nil
+                ),
+                Tracker(
+                    label: "Вот бы поспать",
+                    emoji: "😪",
+                    color: .bunchOfSChoices[9]!,
+                    category: category,
+                    isPinned: false,
+                    completedDaysCount: 2,
+                    schedule: nil
+                )
+            ]
+        ]
+                
+        func numberOfRowsInSection(_ section: Int) -> Int {
+            switch section {
+            case 0: return 1
+            case 1: return 2
+            default: return 0
+            }
+        }
+        
+        func headerLabelInSection(_ section: Int) -> String? {
+            switch section {
+            case 0: return "Закрепленные"
+            case 1: return StubTrackerStore.category.label
+            default: return nil
+            }
+        }
+        
+        func tracker(at indexPath: IndexPath) -> Tracker? {
+            let tracker = StubTrackerStore.trackers[indexPath.section][indexPath.item]
+            return tracker
+        }
+        
+        func addTracker(_ tracker: Tracker, with category: TrackerCategory) throws {}
+        func updateTracker(_ tracker: Tracker, with data: Tracker.Data) throws {}
+        func deleteTracker(_ tracker: Tracker) throws {}
+        func togglePin(for tracker: Tracker) throws {}
+        func loadFilteredTrackers(date: Date, searchString: String) throws {}
+    }
+}
+
+

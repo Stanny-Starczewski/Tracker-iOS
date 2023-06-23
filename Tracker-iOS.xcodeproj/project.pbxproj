@@ -159,13 +159,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		290203942A2D92BD00F217F9 /* AddCategories */ = {
+		290203942A2D92BD00F217F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				290203992A2DA0F500F217F9 /* CategoriesViewModel.swift */,
 				29D551502A435D340021A617 /* StatisticViewModel.swift */,
 			);
-			path = AddCategories;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2956053B2A1132FE008F0983 /* Extensions */ = {
@@ -235,7 +235,7 @@
 			children = (
 				29D392092A35B80600DF8E04 /* Resource */,
 				29EF3A7F2A0DA38500F9FFCA /* ViewControllers */,
-				290203942A2D92BD00F217F9 /* AddCategories */,
+				290203942A2D92BD00F217F9 /* Models */,
 				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A9B2A10072100F9FFCA /* Trackers */,
 				29EF3A982A0FFD0B00F9FFCA /* Cells */,

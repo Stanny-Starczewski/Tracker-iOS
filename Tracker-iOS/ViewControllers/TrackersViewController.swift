@@ -71,6 +71,7 @@ final class TrackersViewController: UIViewController {
     private let trackerLabel = UILabel()
     private var currentDate = Date()
     private let params = UICollectionView.GeometricParams(cellCount: 2, leftInset: 16, rightInset: 16, topInset: 8, bottomInset: 16, height: 148, cellSpacing: 10)
+    private var trackerStore: TrackerStoreProtocol
     private var categories = [TrackerCategory]()
     private var completedTrackers: Set<TrackerRecord> = []
     private var searchText = "" {
@@ -78,13 +79,21 @@ final class TrackersViewController: UIViewController {
             try? trackerStore.loadFilteredTrackers(date: currentDate, searchString: searchText)
         }
     }
-    private let trackerStore = TrackerStore()
     private let trackerCategoryStore = TrackerCategoryStore()
     private let trackerRecordStore = TrackerRecordStore()
     private var editingTracker: Tracker?
     private let analyticsService = AnalyticsService()
     
     // MARK: - Lifecycle
+    init(trackerStore: TrackerStoreProtocol) {
+        self.trackerStore = trackerStore
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()

@@ -16,7 +16,8 @@ class TabBarViewController: UITabBarController {
         }
         tabBar.tintColor = .ypBlue
         
-        let trackersViewController = TrackersViewController()
+        let trackerStore = TrackerStore()
+        let trackersViewController = TrackersViewController(trackerStore: trackerStore)
         let statisticViewController = StatisticViewController()
         let statisticViewModel = StatisticViewModel()
         statisticViewController.statisticViewModel = statisticViewModel
