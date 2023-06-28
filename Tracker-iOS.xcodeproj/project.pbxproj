@@ -54,6 +54,7 @@
 		29EF3A9F2A1007D000F9FFCA /* TrackerCategoryNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3A9E2A1007D000F9FFCA /* TrackerCategoryNames.swift */; };
 		29EF3AA72A106C7700F9FFCA /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3AA62A106C7700F9FFCA /* UILabel+Extension.swift */; };
 		29EF3AA92A107BD300F9FFCA /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EF3AA82A107BD300F9FFCA /* UICollectionView+Extension.swift */; };
+		29F8F9C62A4B7BCE00F4A9BE /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8F9C52A4B7BCE00F4A9BE /* StatisticView.swift */; };
 		A235BD9A409DE896C6148855 /* Pods_Tracker_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEE08733D98941A5270F1279 /* Pods_Tracker_iOSTests.framework */; };
 		AE7CBD194F8080E9AA268BF0 /* Pods_Tracker_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A3538F0B13B290E6E756CE /* Pods_Tracker_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -90,11 +91,8 @@
 		29ABF5632A44C6CA00079D96 /* Tracker-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29ABF5652A44C6CA00079D96 /* Tracker_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker_iOSTests.swift; sourceTree = "<group>"; };
 		29CDB0182A443C5D00DE868E /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
-		29D392132A35BCA200DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		29D392232A35C21000DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		29D3922E2A35C44B00DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29D392302A35C4F800DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		29D392432A3AB5F200DF8E04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		29D392452A3AB5F500DF8E04 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		29D551502A435D340021A617 /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		29EF3A622A0D704800F9FFCA /* Tracker-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +119,10 @@
 		29EF3A9E2A1007D000F9FFCA /* TrackerCategoryNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategoryNames.swift; sourceTree = "<group>"; };
 		29EF3AA62A106C7700F9FFCA /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		29EF3AA82A107BD300F9FFCA /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		29F8F9C52A4B7BCE00F4A9BE /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		29F8F9C82A4BE88200F4A9BE /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		29F8F9C92A4BE88200F4A9BE /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB"; path = "en-GB.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		29F8F9CA2A4BE88300F4A9BE /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		36A3538F0B13B290E6E756CE /* Pods_Tracker_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tracker_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51AFCC035D07BE633349B5E1 /* Pods-Tracker-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Tracker-iOSTests/Pods-Tracker-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8701B048410218F68A123E65 /* Pods-Tracker-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker-iOS.release.xcconfig"; path = "Target Support Files/Pods-Tracker-iOS/Pods-Tracker-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,7 +240,7 @@
 				290203942A2D92BD00F217F9 /* Models */,
 				29EF3A872A0FE39200F9FFCA /* UIStructs */,
 				29EF3A9B2A10072100F9FFCA /* Trackers */,
-				29EF3A982A0FFD0B00F9FFCA /* Cells */,
+				29EF3A982A0FFD0B00F9FFCA /* Final Classes */,
 				29675B372A1B18FD0092DC7C /* CoreData */,
 				29EF3A822A0DA68600F9FFCA /* Helpers */,
 				2956053B2A1132FE008F0983 /* Extensions */,
@@ -289,7 +291,7 @@
 			path = UIStructs;
 			sourceTree = "<group>";
 		};
-		29EF3A982A0FFD0B00F9FFCA /* Cells */ = {
+		29EF3A982A0FFD0B00F9FFCA /* Final Classes */ = {
 			isa = PBXGroup;
 			children = (
 				29EF3A992A0FFD6F00F9FFCA /* ListCells.swift */,
@@ -299,8 +301,9 @@
 				29675B3F2A1C78590092DC7C /* ColorCell.swift */,
 				29EF3A922A0FFB8400F9FFCA /* ListOfItems.swift */,
 				290203972A2D937600F217F9 /* CategoryCell.swift */,
+				29F8F9C52A4B7BCE00F4A9BE /* StatisticView.swift */,
 			);
-			path = Cells;
+			path = "Final Classes";
 			sourceTree = "<group>";
 		};
 		29EF3A9B2A10072100F9FFCA /* Trackers */ = {
@@ -388,12 +391,12 @@
 			};
 			buildConfigurationList = 29EF3A5D2A0D704800F9FFCA /* Build configuration list for PBXProject "Tracker-iOS" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "en-GB";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 				ru,
+				"en-GB",
 			);
 			mainGroup = 29EF3A592A0D704800F9FFCA;
 			packageReferences = (
@@ -539,6 +542,7 @@
 				29675B402A1C78590092DC7C /* ColorCell.swift in Sources */,
 				2925C4042A11904F0040332B /* TrackerTextField.swift in Sources */,
 				2902034E2A29C68600F217F9 /* OnboardingPageViewController.swift in Sources */,
+				29F8F9C62A4B7BCE00F4A9BE /* StatisticView.swift in Sources */,
 				29675B482A1D6D980092DC7C /* UIColorMarshalling.swift in Sources */,
 				29675B442A1D6BAC0092DC7C /* TrackerCategoryStore.swift in Sources */,
 				29675B3C2A1B1B8F0092DC7C /* EmojiCell.swift in Sources */,
@@ -565,8 +569,8 @@
 		29D392142A35BCA200DF8E04 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29D392132A35BCA200DF8E04 /* en */,
 				29D3922E2A35C44B00DF8E04 /* ru */,
+				29F8F9C82A4BE88200F4A9BE /* en-GB */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -574,8 +578,8 @@
 		29D392242A35C21000DF8E04 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29D392232A35C21000DF8E04 /* en */,
 				29D392302A35C4F800DF8E04 /* ru */,
+				29F8F9C92A4BE88200F4A9BE /* en-GB */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -583,8 +587,8 @@
 		29D392442A3AB5F200DF8E04 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29D392432A3AB5F200DF8E04 /* en */,
 				29D392452A3AB5F500DF8E04 /* ru */,
+				29F8F9CA2A4BE88300F4A9BE /* en-GB */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

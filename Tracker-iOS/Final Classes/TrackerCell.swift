@@ -116,7 +116,7 @@ final class TrackerCell: UICollectionViewCell {
     // MARK: - Actions
     @objc
     private func didTapAddDayButton() {
-        analyticsService.report(event: "click", params: ["screen": "Main","item": "track"])
+        analyticsService.report(event: .click, params: ["screen" : "Main", "item" : Items.track.rawValue])
         guard let tracker else { return }
         delegate?.didTapAddDayButton(of: self, with: tracker)
     }

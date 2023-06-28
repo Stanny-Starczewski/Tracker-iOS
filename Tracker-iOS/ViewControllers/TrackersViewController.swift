@@ -23,9 +23,12 @@ final class TrackersViewController: UIViewController {
         datePicker.tintColor = .ypBlue
         datePicker.datePickerMode = .date
         datePicker.maximumDate = Date()
-        datePicker.preferredDatePickerStyle = .compact
-        datePicker.locale = Locale.current
-        datePicker.calendar = Calendar(identifier: .iso8601)
+        datePicker.locale = Locale(identifier: NSLocalizedString("TrackersViewController.datePicker", comment: "date"))
+        if #available(iOS 13.0, *) {
+            datePicker.overrideUserInterfaceStyle = .light
+        }
+        datePicker.layer.masksToBounds = true
+        datePicker.layer.cornerRadius = 8
         datePicker.addTarget(self, action: #selector(didChangedDatePicker), for: .valueChanged)
         return datePicker
     }()
@@ -120,12 +123,12 @@ final class TrackersViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        analyticsService.report(event: "open", params: ["screen": "Main"])
+        analyticsService.report(event: .open, params: ["screen": "Main"])
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        analyticsService.report(event: "close", params: ["screen": "Main"])
+        analyticsService.report(event: .close, params: ["screen": "Main"])
     }
     
     // MARK: - Actions
@@ -136,7 +139,7 @@ final class TrackersViewController: UIViewController {
         setTrackersViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: setTrackersViewController)
         present(navigationController, animated: true)
-        analyticsService.report(event: "click", params: ["screen": "Main", "item": "add_track"])
+        analyticsService.report(event: .click, params: ["screen": "Main", "item": Items.add_track.rawValue])
         
     }
     
@@ -152,7 +155,7 @@ final class TrackersViewController: UIViewController {
     
     @objc
     private func didTapFilterButton() {
-        analyticsService.report(event: "click", params: ["screen": "Main","item": "filter"])
+        analyticsService.report(event: .click, params: ["screen": "Main", "item": Items.filter.rawValue])
     }
     
     // MARK: - Methods
@@ -212,7 +215,7 @@ private extension TrackersViewController {
         NSLayoutConstraint.activate([
             trackerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.1083),
             trackerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 18),
-            datePicker.widthAnchor.constraint(equalToConstant: 120),
+            datePicker.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
             datePicker.centerYAnchor.constraint(equalTo: trackerLabel.centerYAnchor),
             datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             addButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 18),
@@ -258,7 +261,7 @@ extension TrackersViewController: UIContextMenuInteractionDelegate {
                     let type: SetTrackersViewController.TrackerType = tracker.schedule != nil ? .habit : .irregularEvent
                     self?.editingTracker = tracker
                     self?.presentFormController(with: tracker.data, of: type, setAction: .edit)
-                    self?.analyticsService.report(event: "click", params: ["screen": "Main","item": "filter"])
+                    self?.analyticsService.report(event: .click, params: ["screen": "Main", "item": Items.edit.rawValue])
                 },
                 UIAction(title: NSLocalizedString("SetCategoriesViewController.delete", comment: "Delete"), attributes: .destructive) { [weak self] _ in
                     let alert = UIAlertController(
@@ -270,7 +273,7 @@ extension TrackersViewController: UIContextMenuInteractionDelegate {
                     let deleteAction = UIAlertAction(title: NSLocalizedString("SetCategoriesViewController.delete", comment: "Delete"), style: .destructive) { [weak self] _ in
                         guard let self else { return }
                         try? trackerStore.deleteTracker(tracker)
-                        analyticsService.report(event: "click", params: ["screen": "Main","item": "filter"])
+                        self.analyticsService.report(event: .click, params: ["screen": "Main", "item": Items.delete.rawValue])
                     }
                     
                     alert.addAction(deleteAction)
