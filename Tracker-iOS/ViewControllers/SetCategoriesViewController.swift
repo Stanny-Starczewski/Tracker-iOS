@@ -5,7 +5,7 @@ protocol SetCategoriesViewControllerDelegate: AnyObject {
 }
 
 final class SetCategoriesViewController: UIViewController {
-    // MARK: - Layout elements
+    // MARK: - UI Lazy properties
     private let categoriesView: UITableView = {
         let table = UITableView()
         table.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.identifier)
@@ -21,7 +21,8 @@ final class SetCategoriesViewController: UIViewController {
         
     private lazy var addButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Добавить категорию", for: .normal)
+        button.setTitle(NSLocalizedString("SetCategoriesViewController.addButton", comment: "Add category"), for: .normal)
+        button.setTitleColor(.ypBlackNight, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.layer.cornerRadius = 16
         button.backgroundColor = .ypBlackDay
@@ -49,10 +50,7 @@ final class SetCategoriesViewController: UIViewController {
         configureConstraints()
         viewModel.delegate = self
         viewModel.loadCategories()
-        starCombined.configurePlaceholderStack(imageName: "StarIcon", text: """
-        Привычки и события можно
-        объединить по смыслу
-        """)
+        starCombined.configurePlaceholderStack(imageName: "StarIcon", text: NSLocalizedString("SetCategoriesViewController.starCombined", comment: "Combined"))
     }
     
     // MARK: - Actions
@@ -76,11 +74,11 @@ final class SetCategoriesViewController: UIViewController {
     private func deleteCategory(_ category: TrackerCategory) {
         let alert = UIAlertController(
             title: nil,
-            message: "Эта категория точно не нужна?",
+            message: NSLocalizedString("SetCategoriesViewController.deleteCategory", comment: "Delete category"),
             preferredStyle: .actionSheet
         )
-        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("TrackerFormViewController.cancel", comment: "Cancel"), style: .cancel)
+        let deleteAction = UIAlertAction(title: NSLocalizedString("SetCategoriesViewController.delete", comment: "Delete"), style: .destructive) { [weak self] _ in
             self?.viewModel.deleteCategory(category)
         }
 
@@ -95,7 +93,7 @@ final class SetCategoriesViewController: UIViewController {
 // MARK: - Layout methods
 private extension SetCategoriesViewController {
     func configureViews() {
-        title = "Категория"
+        title = NSLocalizedString("SetTrackersViewController.parameter1", comment: "Category")
         view.backgroundColor = .ypWhiteDay
         [categoriesView, addButton, starCombined].forEach { view.addSubview($0) }
         
@@ -165,11 +163,7 @@ extension SetCategoriesViewController: UITableViewDelegate {
 // MARK: - CategoriesViewModelDelegate
 extension SetCategoriesViewController: CategoriesViewModelDelegate {
     func didUpdateCategories() {
-        if viewModel.categories.isEmpty {
-            starCombined.isHidden = false
-        } else {
-            starCombined.isHidden = true
-        }
+        starCombined.isHidden = !viewModel.categories.isEmpty
         categoriesView.reloadData()
     }
     
@@ -186,10 +180,10 @@ extension SetCategoriesViewController: CategoriesViewModelDelegate {
         
         return UIContextMenuConfiguration(actionProvider:  { _ in
             UIMenu(children: [
-                UIAction(title: "Редактировать") { [weak self] _ in
+                UIAction(title: NSLocalizedString("SetCategoriesViewController.edit", comment: "Edit")) { [weak self] _ in
                     self?.editCategory(category)
                 },
-                UIAction(title: "Удалить", attributes: .destructive) { [weak self] _ in
+                UIAction(title: NSLocalizedString("SetCategoriesViewController.delete", comment: "Delete"), attributes: .destructive) { [weak self] _ in
                     self?.deleteCategory(category)
                 }
             ])

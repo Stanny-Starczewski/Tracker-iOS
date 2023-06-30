@@ -6,7 +6,6 @@ protocol TrackerRecordStoreDelegate: AnyObject {
 }
 
 final class TrackerRecordStore: NSObject {
-    
     // MARK: - Properties
     weak var delegate: TrackerRecordStoreDelegate?
     
@@ -59,6 +58,13 @@ final class TrackerRecordStore: NSObject {
         let records = try recordsCoreData.map { try makeTrackerRecord(from: $0) }
         completedTrackers = Set(records)
         delegate?.didUpdateRecords(completedTrackers)
+    }
+    
+    func loadCompletedTrackers() throws -> [TrackerRecord] {
+        let request = NSFetchRequest<TrackerRecordCD>(entityName: "TrackerRecordCD")
+        let recordsCoreData = try context.fetch(request)
+        let records = try recordsCoreData.map { try makeTrackerRecord(from: $0) }
+        return records
     }
     
     private func makeTrackerRecord(from coreData: TrackerRecordCD) throws -> TrackerRecord {

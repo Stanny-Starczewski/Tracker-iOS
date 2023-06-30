@@ -6,7 +6,7 @@ protocol ScheduleViewControllerDelegate: AnyObject {
 
 final class ScheduleViewController: UIViewController {
     
-    // MARK: - Layout elements
+    // MARK: - UI Lazy properties
     private let weekdaysTableView: UITableView = {
         let table = UITableView()
         table.register(WeekdayCell.self, forCellReuseIdentifier: WeekdayCell.identifier)
@@ -14,10 +14,12 @@ final class ScheduleViewController: UIViewController {
         table.isScrollEnabled = false
         return table
     }()
+    
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .ypBlackDay
-        button.setTitle("Готово", for: .normal)
+        button.setTitle(NSLocalizedString("TrackerFormViewController.ready", comment: "Ready"), for: .normal)
+        button.setTitleColor(.ypBlackNight, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.layer.cornerRadius = 16
         button.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
@@ -40,7 +42,6 @@ final class ScheduleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureViews()
         configureConstraints()
     }
@@ -57,7 +58,7 @@ final class ScheduleViewController: UIViewController {
 // MARK: - Layout methods
 private extension ScheduleViewController {
     func configureViews() {
-        title = "Расписание"
+        title = NSLocalizedString("SetTrackersViewController.parameter2", comment: "Schedule")
         view.backgroundColor = .ypWhiteDay
         [weekdaysTableView, confirmButton].forEach { view.addSubview($0) }
         

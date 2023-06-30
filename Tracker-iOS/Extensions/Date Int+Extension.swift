@@ -2,7 +2,7 @@ import Foundation
 
  extension Date {
      static func from(year: Int, month: Int, day: Int) -> Date? {
-         let calendar = Calendar(identifier: .gregorian)
+         let calendar = Calendar(identifier: .iso8601)
          var dateComponents = DateComponents()
          dateComponents.year = year
          dateComponents.month = month

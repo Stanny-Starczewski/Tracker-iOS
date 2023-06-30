@@ -12,11 +12,9 @@ final class TrackerCategoryStore: NSObject {
     var categoriesCoreData: [TrackerCategoryCD] {
         fetchedResultsController.fetchedObjects ?? []
     }
-    
     var categories = [TrackerCategory]()
     
     private let context: NSManagedObjectContext
-    
     private lazy var fetchedResultsController: NSFetchedResultsController<TrackerCategoryCD> = {
         let fetchRequest = NSFetchRequest<TrackerCategoryCD>(entityName: "TrackerCategoryCD")
         fetchRequest.sortDescriptors = [
